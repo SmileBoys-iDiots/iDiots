@@ -1,0 +1,26 @@
+11월 12, 2019 6:53:20 오후 l1j.server.Config load
+정보: loading gameserver config
+11월 12, 2019 6:53:21 오후 l1j.server.server.ObjectIdFactory loadState
+정보: 현재의 오브젝트 ID: 306067224
+11월 12, 2019 6:53:25 오후 l1j.server.server.model.item.L1TreasureBox load
+심각: ./data/xml/Item/TreasureBox.xml의 로드에 실패.
+java.lang.IllegalStateException: org.xml.sax.SAXNotRecognizedException: Feature 'http://javax.xml.XMLConstants/feature/secure-processing' is not recognized.
+	at com.sun.xml.internal.bind.v2.util.XmlFactory.createParserFactory(Unknown Source)
+	at com.sun.xml.internal.bind.v2.runtime.unmarshaller.UnmarshallerImpl.getXMLReader(Unknown Source)
+	at javax.xml.bind.helpers.AbstractUnmarshallerImpl.unmarshal(Unknown Source)
+	at javax.xml.bind.helpers.AbstractUnmarshallerImpl.unmarshal(Unknown Source)
+	at javax.xml.bind.helpers.AbstractUnmarshallerImpl.unmarshal(Unknown Source)
+	at javax.xml.bind.helpers.AbstractUnmarshallerImpl.unmarshal(Unknown Source)
+	at l1j.server.server.model.item.L1TreasureBox.load(L1TreasureBox.java:154)
+	at server.GameServer.initialize(GameServer.java:372)
+	at server.Server.startGameServer(Server.java:167)
+	at server.Server.start(Server.java:107)
+	at server.Start.main(Start.java:9)
+Caused by: org.xml.sax.SAXNotRecognizedException: Feature 'http://javax.xml.XMLConstants/feature/secure-processing' is not recognized.
+	at org.apache.xerces.parsers.AbstractSAXParser.setFeature(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl.setFeatures(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserImpl.<init>(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserFactoryImpl.newSAXParserImpl(Unknown Source)
+	at org.apache.xerces.jaxp.SAXParserFactoryImpl.setFeature(Unknown Source)
+	... 11 more
+
