@@ -18,6 +18,8 @@ ehthumbs_vista.db
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
 .metadata/
+ServerLog/
+bin/
 
 # Windows Installer files
 *.cab

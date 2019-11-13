@@ -166,7 +166,7 @@ public class UserCommands {
 
 	private void help(L1PcInstance pc) {
 		// TODO 자동 생성된 메소드 스텁
-		pc.sendPackets(new S_SystemMessage("[도움말],[라이트],[비번변경],[고정신청],[혈마크]"), true);
+		pc.sendPackets(new S_SystemMessage("[도움말],,[권진환],[라이트],[비번변경],[고정신청],[혈마크]"), true);
 		pc.sendPackets(new S_SystemMessage("[혈맹파티],[오토루팅],[드랍멘트],[버프],[..(텔렉풀기)"), true);
 		pc.sendPackets(new S_SystemMessage("[[키워드],[키워드삭제]"), true);
 		/*pc.sendPackets(new S_SystemMessage("[수배1단],[수배2단],[수배3단]"), true);*/

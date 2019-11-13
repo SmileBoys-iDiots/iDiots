@@ -1,2 +1,10 @@
-11월 13, 2019 6:40:38 오후 l1j.server.Config load
+11월 13, 2019 7:48:28 오후 l1j.server.Config load
 정보: loading gameserver config
+11월 13, 2019 7:48:28 오후 l1j.server.server.ObjectIdFactory loadState
+정보: 현재의 오브젝트 ID: 306270762
+11월 13, 2019 7:49:34 오후 l1j.server.server.clientpackets.C_SelectCharacter login_server
+정보: 캐릭터 로그인: char=메티스 account=admin host=127.0.0.1
+11월 13, 2019 7:50:39 오후 l1j.server.server.Account create
+정보: created new account for asdf
+11월 13, 2019 7:50:58 오후 l1j.server.server.clientpackets.C_SelectCharacter login_server
+정보: 캐릭터 로그인: char=다현 account=asdf host=127.0.0.1
