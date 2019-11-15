@@ -91,8 +91,8 @@ public class UserRankingController implements Runnable {
 							pc.getInventory().consumeItem(600258, 1);
 							pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.RANKING_BUFF_1);
 							setStatBuff(pc, -1);
-							pc.addMaxHp(-200);
-							pc.getAC().addAc(3);
+							pc.addMaxHp(200);
+							pc.getAC().addAc(-3);
 							pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 							pc.sendPackets(new S_NewCreateItem(L1SkillId.RANKING_BUFF_1, false, pc.getType(), 0));
 						}
@@ -100,8 +100,8 @@ public class UserRankingController implements Runnable {
 						if (star != 10) {
 							pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.RANKING_BUFF_2);
 							setStatBuff(pc, -1);
-							pc.addMaxHp(-200);
-							pc.getAC().addAc(3);
+							pc.addMaxHp(200);
+							pc.getAC().addAc(-3);
 							pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 							pc.sendPackets(new S_NewCreateItem(L1SkillId.RANKING_BUFF_2, false, pc.getType(), 0));
 						}
@@ -109,8 +109,8 @@ public class UserRankingController implements Runnable {
 						if (star != 9) {
 							pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.RANKING_BUFF_3);
 							setStatBuff(pc, -1);
-							pc.addMaxHp(-200);
-							pc.getAC().addAc(3);
+							pc.addMaxHp(200);
+							pc.getAC().addAc(-3);
 							pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 							pc.sendPackets(new S_NewCreateItem(L1SkillId.RANKING_BUFF_3, false, pc.getType(), 0));
 						}
@@ -118,8 +118,8 @@ public class UserRankingController implements Runnable {
 						if (star != 8) {
 							pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.RANKING_BUFF_4);
 							setStatBuff(pc, -1);
-							pc.addMaxHp(-200);
-							pc.getAC().addAc(3);
+							pc.addMaxHp(200);
+							pc.getAC().addAc(-3);
 							pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 							pc.sendPackets(new S_NewCreateItem(L1SkillId.RANKING_BUFF_4, false, pc.getType(), 0));
 						}
@@ -127,8 +127,8 @@ public class UserRankingController implements Runnable {
 						if (star != 7) {
 							pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.RANKING_BUFF_5);
 							setStatBuff(pc, -1);
-							pc.addMaxHp(-200);
-							pc.getAC().addAc(3);
+							pc.addMaxHp(200);
+							pc.getAC().addAc(-3);
 							pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 							pc.sendPackets(new S_NewCreateItem(L1SkillId.RANKING_BUFF_5, false, pc.getType(), 0));
 						}
@@ -136,8 +136,8 @@ public class UserRankingController implements Runnable {
 						if (star != 6) {
 							pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.RANKING_BUFF_6);
 							setStatBuff(pc, -1);
-							pc.addMaxHp(-200);
-							pc.getAC().addAc(2);
+							pc.addMaxHp(200);
+							pc.getAC().addAc(-2);
 							pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 							pc.sendPackets(new S_NewCreateItem(L1SkillId.RANKING_BUFF_6, false, pc.getType(), 0));
 						}
@@ -145,8 +145,8 @@ public class UserRankingController implements Runnable {
 						if (star != 5) {
 							pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.RANKING_BUFF_7);
 							setStatBuff(pc, -1);
-							pc.addMaxHp(-200);
-							pc.getAC().addAc(1);
+							pc.addMaxHp(200);
+							pc.getAC().addAc(-1);
 							pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 							pc.sendPackets(new S_NewCreateItem(L1SkillId.RANKING_BUFF_7, false, pc.getType(), 0));
 						}
@@ -154,7 +154,7 @@ public class UserRankingController implements Runnable {
 						if (star != 4) {
 							pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.RANKING_BUFF_8);
 							setStatBuff(pc, -1);
-							pc.addMaxHp(-200);
+							pc.addMaxHp(200);
 							pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 							pc.sendPackets(new S_NewCreateItem(L1SkillId.RANKING_BUFF_8, false, pc.getType(), 0));
 						}
@@ -162,7 +162,7 @@ public class UserRankingController implements Runnable {
 						if (star != 3) {
 							pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.RANKING_BUFF_9);
 							setStatBuff(pc, -1);
-							pc.addMaxHp(-100);
+							pc.addMaxHp(100);
 							pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 							pc.sendPackets(new S_NewCreateItem(L1SkillId.RANKING_BUFF_9, false, pc.getType(), 0));
 						}
@@ -170,7 +170,7 @@ public class UserRankingController implements Runnable {
 						if (star != 2) {
 							pc.getSkillEffectTimerSet().killSkillEffectTimer(L1SkillId.RANKING_BUFF_10);
 							setStatBuff(pc, -1);
-							pc.addMaxHp(-50);
+							pc.addMaxHp(50);
 							pc.sendPackets(new S_HPUpdate(pc.getCurrentHp(), pc.getMaxHp()));
 							pc.sendPackets(new S_NewCreateItem(L1SkillId.RANKING_BUFF_10, false, pc.getType(), 0));
 						}
