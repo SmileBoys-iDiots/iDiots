@@ -4466,7 +4466,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 						if (pc.getMap().isEscapable() || pc.isGm()) {
 							if (pc.Sabutelok()) {
-								pc.setTelType(5);
+								pc.setTelType(11);
 								pc.sendPackets(new S_SabuTell(pc), true);
 								pc.getInventory().removeItem(useItem, 1);
 							}
