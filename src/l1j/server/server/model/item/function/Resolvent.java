@@ -67,10 +67,10 @@ public class Resolvent extends L1ItemInstance {
 		}
 		if (item.getItem().getType2() == 1 || item.getItem().getType2() == 2) { // 무기·방어용
 																				// 기구
-			if (item.getEnchantLevel() != 0) { // 강화가 끝난 상태
-				pc.sendPackets(new S_ServerMessage(1161), true); // 용해할 수 없습니다.
-				return;
-			}
+			//if (item.getEnchantLevel() != 0) { // 강화가 끝난 상태
+			//	pc.sendPackets(new S_ServerMessage(1161), true); // 용해할 수 없습니다.
+			//	return;
+			//}
 			if (item.isEquipped()) { // 장비중
 				pc.sendPackets(new S_ServerMessage(1161), true); // 용해할 수 없습니다.
 				return;

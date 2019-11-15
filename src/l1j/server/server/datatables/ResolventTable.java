@@ -81,7 +81,7 @@ public final class ResolventTable {
 	}
 
 	public int getCrystalCount(int itemId) {
-		int crystalCount = 0;
+		int crystalCount = 1;
 		if (_resolvent.containsKey(itemId)) {
 			crystalCount = _resolvent.get(itemId);
 		}
