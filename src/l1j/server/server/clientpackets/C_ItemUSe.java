@@ -10292,10 +10292,14 @@ public class C_ItemUSe extends ClientBasePacket {
 			pc.getInventory().removeItem(useItem, 1);
 				int ran = _random.nextInt(100) + 1;
 				if (ran <= 1) {
-					createNewItem2(pc, 4600277, 1, 0); // 축복
-					createNewItem2(pc, 4600279, 1, 0); // 축복
+					createNewItem2(pc, 600277, 1, 0); // 축복
+					createNewItem2(pc, 600279, 1, 0); // 축복
+					createNewItem2(pc, 600280, 1, 0); // 축복
+					createNewItem2(pc, 600281, 1, 0); // 축복
+					createNewItem2(pc, 600282, 1, 0); // 축복
+					createNewItem2(pc, 600283, 1, 0); // 축복
 				} else
-					createNewItem2(pc, 4600279, 1, 0);
+					createNewItem2(pc, 600279, 1, 0);
 			}
 	}
 	private void 룬스톤(L1PcInstance pc, int itemId, L1ItemInstance useItem) {
