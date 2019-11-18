@@ -555,6 +555,18 @@ public abstract class L1Item implements Serializable {
 	public void set_addsp(int addsp) {
 		_addsp = addsp;
 	}
+	
+	private int _critical = 0;
+	
+	public void set_addcri(int i)
+	{
+		_critical = i;
+	}
+	
+	public int get_addcri()
+	{
+		return _critical;
+	}
 
 	private int _mdef = 0;
 
@@ -750,10 +762,12 @@ public abstract class L1Item implements Serializable {
 	public int get_canbedmg() {
 		return 0;
 	}
-
+	
 	public boolean isTwohandedWeapon() {
 		return false;
 	}
+	
+	
 
 	// ■■■■■■ L1Armor 로 오버라이드(override) 하는 항목 ■■■■■■
 	public int get_ac() {

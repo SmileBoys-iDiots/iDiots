@@ -409,6 +409,7 @@ public class ItemTable {
 				weapon.set_addhpr(rs.getInt("add_hpr"));
 				weapon.set_addmpr(rs.getInt("add_mpr"));
 				weapon.set_addsp(rs.getInt("add_sp"));
+				weapon.set_addcri(rs.getInt("add_cri"));
 				weapon.set_mdef(rs.getInt("m_def"));
 				weapon.setDoubleDmgChance(rs.getInt("double_dmg_chance"));
 				weapon.setMagicDmgModifier(rs.getInt("magicdmgmodifier"));
@@ -509,6 +510,7 @@ public class ItemTable {
 				armor.set_addhpr(rs.getInt("add_hpr"));
 				armor.set_addmpr(rs.getInt("add_mpr"));
 				armor.set_addsp(rs.getInt("add_sp"));
+				armor.set_addcri(rs.getInt("add_cri"));
 				armor.setMinLevel(rs.getInt("min_lvl"));
 				armor.setMaxLevel(rs.getInt("max_lvl"));
 				armor.set_mdef(rs.getInt("m_def"));
@@ -1315,6 +1317,7 @@ public class ItemTable {
 			weapon.set_addmpr(item.get_addmpr());
 			weapon.set_addsp(item.get_addsp());
 			weapon.set_mdef(item.get_mdef());
+			weapon.set_addcri(item.get_addcri());
 			weapon.setDoubleDmgChance(item.getDoubleDmgChance());
 			weapon.setMagicDmgModifier(item.getMagicDmgModifier());
 			weapon.set_canbedmg(item.get_canbedmg());
@@ -1376,6 +1379,7 @@ public class ItemTable {
 			armor.set_addhpr(item.get_addhpr());
 			armor.set_addmpr(item.get_addmpr());
 			armor.set_addsp(item.get_addsp());
+			armor.set_addcri(item.get_addcri());
 			armor.setMinLevel(item.getMinLevel());
 			armor.setMaxLevel(item.getMaxLevel());
 			armor.set_mdef(item.get_mdef());

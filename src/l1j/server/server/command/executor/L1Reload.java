@@ -182,13 +182,8 @@ public class L1Reload implements L1CommandExecutor {
 		} 		 else if (arg.equalsIgnoreCase("인챈트")) {
 			ItemEnchantList.reload();
 			gm.sendPackets(new S_SystemMessage("ItemEnchantList Update Complete..."));
-		}
-			
-			else
-			
-			
-			
-			if (arg.equalsIgnoreCase("액션파일")) {
+		}			
+		else if (arg.equalsIgnoreCase("액션파일")) {
 			NpcActionTable.reload();
 			gm.sendPackets(new S_SystemMessage("NpcActionTable Reload Complete..."), true);
 		} else 

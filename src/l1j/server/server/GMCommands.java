@@ -648,7 +648,7 @@ public class GMCommands {
 		
 		// GM에 개방하는 커맨드는 여기에 쓴다
 		if (cmd.equalsIgnoreCase("도움말")) {
-			showHelp(gm);
+			//showHelp(gm);
 		} else if (cmd.equalsIgnoreCase("타임테스트")) {
 			try {
 				StringTokenizer tok = new StringTokenizer(cmd);
@@ -842,7 +842,7 @@ public class GMCommands {
 			CheckAllRates(gm);
 		} else if (cmd.equalsIgnoreCase("조사")) { // #### 케릭검사
 			chainfo(gm, param);
-		} else if (cmd.equalsIgnoreCase("데스크")) { // #### 케릭검사
+		} else if (cmd.equalsIgnoreCase("데스크")) { // 데스크확인
 			데스크(gm, param);
 		} else if (cmd.equalsIgnoreCase("인벤")) { // #### 케릭검사
 			인벤(gm, param);

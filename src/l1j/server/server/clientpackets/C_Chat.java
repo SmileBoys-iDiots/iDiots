@@ -231,6 +231,14 @@ public class C_Chat extends ClientBasePacket {
 					System.out.println("bb");
 					return;
 				}
+				else if (chatText.startsWith(".")) { // 유저코멘트
+					String cmd = chatText.substring(1);
+					if (cmd == null) {
+						return;
+					}
+					UserCommands.getInstance().handleCommands(pc, cmd);
+					return;
+				}
 				
 				if (chatText.startsWith("$")) {
 					String text = chatText.substring(1);
@@ -242,14 +250,7 @@ public class C_Chat extends ClientBasePacket {
 				}
 
 	
-				if (chatText.startsWith(".")) { // 유저코멘트
-					String cmd = chatText.substring(1);
-					if (cmd == null) {
-						return;
-					}
-					UserCommands.getInstance().handleCommands(pc, cmd);
-					return;
-				}
+				
 
 				if (chatText.startsWith("$")) { // 월드채팅
 					String text = chatText.substring(1);
