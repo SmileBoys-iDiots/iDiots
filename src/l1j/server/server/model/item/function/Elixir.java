@@ -32,8 +32,15 @@ import l1j.server.server.templates.L1EtcItem;
 import l1j.server.server.templates.L1Item;
 
 @SuppressWarnings("serial")
-public class Elixir extends L1ItemInstance {
-
+public class Elixir extends L1ItemInstance
+{
+	private static final int 힘의앨릭서 = 40033;
+	private static final int 콘의앨릭서 = 40034;
+	private static final int 덱스의앨릭서 = 40035;
+	private static final int 인트의앨릭서 = 40036;
+	private static final int 위즈의앨릭서 = 40037;
+	private static final int 카리스마의앨릭서 = 40038;
+	
 	public Elixir(L1Item item) {
 		super(item);
 	}
@@ -45,15 +52,10 @@ public class Elixir extends L1ItemInstance {
 			if (cha instanceof L1PcInstance) 
 			{
 				L1PcInstance pc = (L1PcInstance) cha;
-				L1ItemInstance useItem = pc.getInventory()
-						.getItem(this.getId());
+				L1ItemInstance useItem = pc.getInventory().getItem(this.getId());
 				int itemId = useItem.getItemId();
 				int item_minlvl = ((L1EtcItem) useItem.getItem()).getMinLevel();
 				int item_maxlvl = ((L1EtcItem) useItem.getItem()).getMaxLevel();
-				// 엘릭서 사용 가능 갯수는 50부터 1개 3레벨당 1개씩 추가
-				int ElixirMaxCount = ((pc.getLevel() - 50) / 3);
-				int ElixirUseCount = ((pc.getLevel() - 50) / 3) - pc.getAbility().getElixirCount();
-
 				if (item_minlvl != 0 && item_minlvl > pc.getLevel()	&& !pc.isGm())
 				{
 					pc.sendPackets(new S_ServerMessage(318, String.valueOf(item_minlvl)), true);
@@ -67,10 +69,23 @@ public class Elixir extends L1ItemInstance {
 					return;
 				}
 				
+				// 엘릭서 사용 가능 갯수는 50부터 1개 3레벨당 1개씩 추가
+				int ElixirUse = pc.getLevel() - 50;
+				if(ElixirUse < 0)
+				{
+					pc.sendPackets(new S_ServerMessage(4473), true);
+					pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터  섭취가 가능합니다 ."), true);
+					return;
+				}
+				if(ElixirUse > 45)
+					ElixirUse = 45;
+				
+				int ElixirMaxCount = ((ElixirUse / 3) + 1);
+				int ElixirUseCount = ((ElixirUse / 3) + 1) - pc.getAbility().getElixirCount();				
 				switch (itemId)
 				{
-					case 40033:
-						if (pc.getAbility().getStr() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
+					case 힘의앨릭서:
+						if (pc.getAbility().getStr() < 55 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{						
 							pc.getAbility().addStr((byte) 1);
 							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
@@ -85,8 +100,8 @@ public class Elixir extends L1ItemInstance {
 							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
 						}
 						break;
-					case 40034:
-						if (pc.getAbility().getCon() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
+					case 콘의앨릭서:
+						if (pc.getAbility().getCon() < 55 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{
 							pc.getAbility().addCon((byte) 1);
 							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
@@ -101,8 +116,8 @@ public class Elixir extends L1ItemInstance {
 							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
 						}
 						break;
-					case 40035:
-						if (pc.getAbility().getDex() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
+					case 덱스의앨릭서:
+						if (pc.getAbility().getDex() < 55 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{
 							pc.getAbility().addDex((byte) 1);
 							pc.resetBaseAc();
@@ -121,8 +136,8 @@ public class Elixir extends L1ItemInstance {
 							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
 						}
 						break;
-					case 40036:
-						if (pc.getAbility().getInt() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
+					case 인트의앨릭서:
+						if (pc.getAbility().getInt() < 55 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{
 							pc.getAbility().addInt((byte) 1);
 							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
@@ -137,8 +152,8 @@ public class Elixir extends L1ItemInstance {
 							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
 						}
 						break;
-					case 40037:
-						if (pc.getAbility().getWis() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
+					case 위즈의앨릭서:
+						if (pc.getAbility().getWis() < 55 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{
 							pc.getAbility().addWis((byte) 1);
 							pc.resetBaseMr();
@@ -154,8 +169,8 @@ public class Elixir extends L1ItemInstance {
 							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
 						}
 						break;
-					case 40038:
-						if (pc.getAbility().getCha() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
+					case 카리스마의앨릭서:
+						if (pc.getAbility().getCha() < 55 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{
 							pc.getAbility().addCha((byte) 1);
 							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
