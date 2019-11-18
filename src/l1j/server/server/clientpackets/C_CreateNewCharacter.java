@@ -221,24 +221,25 @@ public class C_CreateNewCharacter extends ClientBasePacket {
 			pc.getAbility().setBaseCha(cha);
 			pc.getAbility().setBaseInt(intel);
 
-			if (!pc.getAbility().isNormalAbility(pc.getClassId(),
-					pc.getLevel(), pc.getHighLevel(), total)) {
+			if (!pc.getAbility().isNormalAbility(pc.getClassId(), pc.getLevel(), pc.getHighLevel(), total))
+			{
 				_log.finest("Character have wrong value");
-				S_CharCreateStatus s_charcreatestatus3 = new S_CharCreateStatus(
-						S_CharCreateStatus.REASON_WRONG_AMOUNT);
+				S_CharCreateStatus s_charcreatestatus3 = new S_CharCreateStatus(S_CharCreateStatus.REASON_WRONG_AMOUNT);
 				client.sendPacket(s_charcreatestatus3, true);
 				return;
 			}
 
-			_log.fine("charname: " + pc.getName() + " classId: "
-					+ pc.getClassId());
-			S_CharCreateStatus s_charcreatestatus2 = new S_CharCreateStatus(
-					S_CharCreateStatus.REASON_OK);
+			_log.fine("charname: " + pc.getName() + " classId: " + pc.getClassId());
+			S_CharCreateStatus s_charcreatestatus2 = new S_CharCreateStatus(S_CharCreateStatus.REASON_OK);
 			client.sendPacket(s_charcreatestatus2, true);
 			initNewChar(client, pc);
-		} catch (Exception e) {
-
-		} finally {
+		} 
+		
+		catch (Exception e)
+		{
+		} 
+		finally
+		{
 			clear();
 		}
 	}

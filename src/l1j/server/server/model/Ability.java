@@ -69,491 +69,527 @@ public class Ability {
 		return baseStr + baseCon + baseDex + baseCha + baseInt + baseWis;
 	}
 
-	public byte getStr() {
+	
+	
+	public byte getStr()
+	{
 		return str;
 	}
-
-	public void setStr(int i) {
-		str = checkRange(i, baseStr);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Str();
-		}
-	}
-
-	public void addStr(int i) {
-		setStr(getStr() + i);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Str();
-		}
-	}
-
-	public byte getBaseStr() {
+	public byte getBaseStr()
+	{
 		return baseStr;
 	}
-
-	public void addBaseStr(int i) {
+	public byte getAddedStr()
+	{
+		return addedStr;
+	}
+	public byte getTotalStr()
+	{
+		return checkRange(getStr() + getAddedStr());
+	}
+	public void setStr(int i)
+	{
+		str = checkRange(i, baseStr);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Str();
+		}
+	}
+	public void addStr(int i)
+	{
+		setStr(getStr() + i);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Str();
+		}
+	}
+	public void addBaseStr(int i)
+	{
 		setBaseStr(getBaseStr() + i);
 	}
-
-	public void setBaseStr(int i) {
+	public void setBaseStr(int i)
+	{
 		byte newBaseStr = checkRange(i);
 		addStr(newBaseStr - baseStr);
 		baseStr = newBaseStr;
-
 	}
-
-	public byte getAddedStr() {
-		return addedStr;
-	}
-
-	public void addAddedStr(int i) {
+	public void addAddedStr(int i)
+	{
 		addedStr = checkRange(addedStr + i, LIMIT_MINUS_MIN);
-		if (character instanceof L1PcInstance) {
+		if (character instanceof L1PcInstance)
+		{
 			L1PcInstance pc = (L1PcInstance) character;
 			pc.Stat_Reset_Str();
-
 		}
 	}
+	
+	
 
-	public byte getTotalStr() {
-		return checkRange(getStr() + getAddedStr());
-	}
-
-	public byte getCon() {
+	public byte getCon()
+	{
 		return con;
 	}
-
-	public void setCon(int i) {
-		con = checkRange(i, baseCon);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Con();
-
-		}
-	}
-
-	public void addCon(int i) {
-		setCon(getCon() + i);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Con();
-
-		}
-	}
-
-	public byte getBaseCon() {
+	public byte getBaseCon()
+	{
 		return baseCon;
 	}
+	public byte getAddedCon()
+	{
+		return addedCon;
+	}
+	public byte getTotalCon()
+	{
+		return checkRange(getCon() + getAddedCon());
+	}
+	public void setCon(int i)
+	{
+		con = checkRange(i, baseCon);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Con();
+		}
+	}
+	public void addCon(int i)
+	{
+		setCon(getCon() + i);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Con();
 
-	public void addBaseCon(int i) {
+		}
+	}
+	public void addBaseCon(int i)
+	{
 		setBaseCon(getBaseCon() + i);
 	}
 
-	public void setBaseCon(int i) {
+	public void setBaseCon(int i)
+	{
 		byte newBaseCon = checkRange(i);
 		addCon(newBaseCon - baseCon);
 		baseCon = newBaseCon;
 	}
-
-	public byte getAddedCon() {
-		return addedCon;
-	}
-
-	public void addAddedCon(int i) {
+	public void addAddedCon(int i)
+	{
 		addedCon = checkRange(addedCon + i, LIMIT_MINUS_MIN);
-		if (character instanceof L1PcInstance) {
+		if (character instanceof L1PcInstance)
+		{
 			L1PcInstance pc = (L1PcInstance) character;
 			pc.Stat_Reset_Con();
-
 		}
 	}
 
-	public byte getTotalCon() {
-		return checkRange(getCon() + getAddedCon());
-	}
 
-	public byte getDex() {
+	public byte getDex()
+	{
 		return dex;
 	}
-
-	public void setDex(int i) {
-		dex = checkRange(i, baseDex);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Dex();
-
-		}
-	}
-
-	public void addDex(int i) {
-		setDex(getDex() + i);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Dex();
-
-		}
-	}
-
-	public byte getBaseDex() {
+	public byte getBaseDex()
+	{
 		return baseDex;
 	}
-
-	public void addBaseDex(int i) {
+	public byte getAddedDex()
+	{
+		return addedDex;
+	}
+	public byte getTotalDex()
+	{
+		return checkRange(getDex() + getAddedDex());
+	}
+	public void setDex(int i)
+	{
+		dex = checkRange(i, baseDex);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Dex();
+		}
+	}
+	public void addDex(int i)
+	{
+		setDex(getDex() + i);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Dex();
+		}
+	}
+	public void addBaseDex(int i)
+	{
 		setBaseDex(getBaseDex() + i);
 	}
-
-	public void setBaseDex(int i) {
+	public void setBaseDex(int i)
+	{
 		byte newBaseDex = checkRange(i);
 		addDex(newBaseDex - baseDex);
 		baseDex = newBaseDex;
 	}
-
-	public byte getAddedDex() {
-		return addedDex;
-	}
-
-	public void addAddedDex(int i) {
+	public void addAddedDex(int i)
+	{
 		addedDex = checkRange(addedDex + i, LIMIT_MINUS_MIN);
-		if (character instanceof L1PcInstance) {
+		if (character instanceof L1PcInstance)
+		{
 			L1PcInstance pc = (L1PcInstance) character;
 			pc.Stat_Reset_Dex();
-
 		}
 	}
+	
 
-	public byte getTotalDex() {
-		return checkRange(getDex() + getAddedDex());
-	}
 
-	public byte getCha() {
-		return cha;
-	}
-
-	public void setCha(int i) {
-		cha = checkRange(i, baseCha);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Cha();
-
-		}
-	}
-
-	public void addCha(int i) {
-		setCha(getCha() + i);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Cha();
-
-		}
-	}
-
-	public byte getBaseCha() {
-		return baseCha;
-	}
-
-	public void addBaseCha(int i) {
-		setBaseCha(getBaseCha() + i);
-	}
-
-	public void setBaseCha(int i) {
-		byte newBaseCha = checkRange(i);
-		addCha(newBaseCha - baseCha);
-		baseCha = newBaseCha;
-	}
-
-	public byte getAddedCha() {
-		return addedCha;
-	}
-
-	public void addAddedCha(int i) {
-		addedCha = checkRange(addedCha + i, LIMIT_MINUS_MIN);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Cha();
-
-		}
-	}
-
-	public byte getTotalCha() {
-		return checkRange(getCha() + getAddedCha());
-	}
-
-	public byte getInt() {
+	public byte getInt()
+	{
 		return intel;
 	}
-
-	public void setInt(int i) {
-		intel = checkRange(i, baseInt);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Int();
-
-		}
-	}
-
-	public void addInt(int i) {
-		setInt(getInt() + i);
-		if (character instanceof L1PcInstance) {
-			L1PcInstance pc = (L1PcInstance) character;
-			pc.Stat_Reset_Int();
-
-		}
-	}
-
-	public byte getBaseInt() {
+	public byte getBaseInt()
+	{
 		return baseInt;
 	}
-
-	public void addBaseInt(int i) {
+	public byte getAddedInt()
+	{
+		return addedInt;
+	}
+	public byte getTotalInt()
+	{
+		return checkRange(getInt() + getAddedInt());
+	}
+	public void setInt(int i)
+	{
+		intel = checkRange(i, baseInt);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Int();
+		}
+	}
+	public void addInt(int i)
+	{
+		setInt(getInt() + i);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Int();
+		}
+	}
+	public void addBaseInt(int i)
+	{
 		setBaseInt(getBaseInt() + i);
 	}
-
-	public void setBaseInt(int i) {
+	public void setBaseInt(int i)
+	{
 		byte newBaseInt = checkRange(i);
 		addInt(newBaseInt - baseInt);
 		baseInt = newBaseInt;
 	}
-
-	public byte getAddedInt() {
-		return addedInt;
-	}
-
-	public void addAddedInt(int i) {
+	public void addAddedInt(int i)
+	{
 		addedInt = checkRange(addedInt + i, LIMIT_MINUS_MIN);
-		if (character instanceof L1PcInstance) {
+		if (character instanceof L1PcInstance)
+		{
 			L1PcInstance pc = (L1PcInstance) character;
 			pc.Stat_Reset_Int();
-
 		}
 	}
+	
 
-	public byte getTotalInt() {
-		return checkRange(getInt() + getAddedInt());
-	}
 
-	public byte getWis() {
+	public byte getWis()
+	{
 		return wis;
 	}
-
-	public void setWis(int i) {
+	public byte getBaseWis()
+	{
+		return baseWis;
+	}
+	public byte getAddedWis()
+	{
+		return addedWis;
+	}
+	public byte getTotalWis()
+	{
+		return checkRange(getWis() + getAddedWis());
+	}
+	public void setWis(int i)
+	{
 		wis = checkRange(i, baseWis);
-		if (character instanceof L1PcInstance) {
+		if (character instanceof L1PcInstance)
+		{
 			L1PcInstance pc = (L1PcInstance) character;
 			pc.Stat_Reset_Wis();
 		}
 	}
-
-	public void addWis(int i) {
+	public void addWis(int i)
+	{
 		setWis(getWis() + i);
 	}
-
-	public byte getBaseWis() {
-		return baseWis;
-	}
-
-	public void addBaseWis(int i) {
+	public void addBaseWis(int i)
+	{
 		setBaseWis(getBaseWis() + i);
 	}
-
-	public void setBaseWis(int i) {
+	public void setBaseWis(int i)
+	{
 		byte newBaseWis = checkRange(i);
 		addWis(newBaseWis - baseWis);
 		baseWis = newBaseWis;
 	}
-
-	public byte getAddedWis() {
-		return addedWis;
-	}
-
-	public void addAddedWis(int i) {
+	public void addAddedWis(int i)
+	{
 		addedWis = checkRange(addedWis + i, LIMIT_MINUS_MIN);
-		if (character instanceof L1PcInstance) {
+		if (character instanceof L1PcInstance)
+		{
 			L1PcInstance pc = (L1PcInstance) character;
 			pc.Stat_Reset_Wis();
-
 		}
 	}
 
-	public byte getTotalWis() {
-		return checkRange(getWis() + getAddedWis());
-	}
+	
 
-	public int getElixirCount() {
+	public byte getCha()
+	{
+		return cha;
+	}
+	public byte getBaseCha()
+	{
+		return baseCha;
+	}
+	public byte getAddedCha()
+	{
+		return addedCha;
+	}
+	public byte getTotalCha()
+	{
+		return checkRange(getCha() + getAddedCha());
+	}
+	public void setCha(int i)
+	{
+		cha = checkRange(i, baseCha);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Cha();
+		}
+	}
+	public void addCha(int i)
+	{
+		setCha(getCha() + i);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Cha();
+		}
+	}
+	public void addBaseCha(int i)
+	{
+		setBaseCha(getBaseCha() + i);
+	}
+	public void setBaseCha(int i)
+	{
+		byte newBaseCha = checkRange(i);
+		addCha(newBaseCha - baseCha);
+		baseCha = newBaseCha;
+	}
+	public void addAddedCha(int i)
+	{
+		addedCha = checkRange(addedCha + i, LIMIT_MINUS_MIN);
+		if (character instanceof L1PcInstance)
+		{
+			L1PcInstance pc = (L1PcInstance) character;
+			pc.Stat_Reset_Cha();
+		}
+	}
+	
+
+
+	public int getElixirCount()
+	{
 		return elixirCount;
 	}
-
-	public void setElixirCount(int i) {
+	public void setElixirCount(int i)
+	{
 		elixirCount = i;
 	}
-
-	public int getBonusAbility() {
+	public int getBonusAbility()
+	{
 		return bonusAbility;
 	}
-
-	public void setBonusAbility(int i) {
+	public void setBonusAbility(int i)
+	{
 		bonusAbility = i;
 	}
-
-	public boolean isNormalAbility(final int classId, final int currentLevel,
-			final int highestLevel, final int total) {
-		boolean result = true;
-		final int MaxAbility = 50;
+	public boolean isNormalAbility(final int classId, final int currentLevel, final int highestLevel, final int total)
+	{
+		int MaxAbility = 50;
+		if(currentLevel >= 90)
+			MaxAbility = 55;
 		int minStr, minDex, minCon, minWis, minCha, minInt, remainStats;
-		switch (classId) {
-		case L1PcInstance.CLASSID_FENCER_MALE:
-		case L1PcInstance.CLASSID_FENCER_FEMALE:
-			minStr = 16;
-			minDex = 13; 
-			minCon = 15;
-			minWis = 11; 
-			minCha = 5; 
-			minInt = 11;
-			remainStats = 4;
-			break;
-		case L1PcInstance.CLASSID_WARRIOR_MALE:
-		case L1PcInstance.CLASSID_WARRIOR_FEMALE:
-			minStr = 16;
-			minDex = 13;
-			minCon = 16;
-			minWis = 7;
-			minCha = 9;
-			minInt = 10;
-			remainStats = 4;
-			break;
-		case L1PcInstance.CLASSID_PRINCE:
-		case L1PcInstance.CLASSID_PRINCESS:
-			minStr = 13;
-			minDex = 9;
-			minCon = 11;
-			minWis = 11;
-			minCha = 13;
-			minInt = 9;
-			remainStats = 9;
-			break;
-		case L1PcInstance.CLASSID_KNIGHT_MALE:
-		case L1PcInstance.CLASSID_KNIGHT_FEMALE:
-			minStr = 16;
-			minDex = 12;
-			minCon = 16;
-			minWis = 9;
-			minCha = 10;
-			minInt = 8;
-			remainStats = 4;
-			break;
-		case L1PcInstance.CLASSID_WIZARD_MALE:
-		case L1PcInstance.CLASSID_WIZARD_FEMALE:
-			minStr = 8;
-			minDex = 7;
-			minCon = 12;
-			minInt = 14;
-			minWis = 14;
-			minCha = 8;
-
-			remainStats = 12;
-			break;
-		case L1PcInstance.CLASSID_ELF_MALE:
-		case L1PcInstance.CLASSID_ELF_FEMALE:
-			minStr = 10;
-			minDex = 12;
-			minCon = 12;
-			minWis = 12;
-			minInt = 12;
-			minCha = 9;
-
-			remainStats = 8;
-			break;
-		case L1PcInstance.CLASSID_DARKELF_MALE:
-		case L1PcInstance.CLASSID_DARKELF_FEMALE:
-			minStr = 15;
-			minDex = 12;
-			minCon = 12;
-			minWis = 10;
-			minCha = 8;
-			minInt = 11;
-			remainStats = 7;
-			break;
-		case L1PcInstance.CLASSID_DRAGONKNIGHT_MALE:
-		case L1PcInstance.CLASSID_DRAGONKNIGHT_FEMALE:
-			minStr = 13;
-			minDex = 11;
-			minCon = 14;
-			minWis = 10;
-			minCha = 8;
-			minInt = 10;
-			remainStats = 9;
-			break;
-		case L1PcInstance.CLASSID_ILLUSIONIST_MALE:
-		case L1PcInstance.CLASSID_ILLUSIONIST_FEMALE:
-			minStr = 9;
-			minDex = 10;
-			minCon = 12;
-			minWis = 14;
-			minCha = 8;
-			minInt = 12;
-			remainStats = 10;
-			break;
-		default:
+		switch (classId)
+		{
+			case L1PcInstance.CLASSID_FENCER_MALE:
+			case L1PcInstance.CLASSID_FENCER_FEMALE:
+				minStr = 16;
+				minDex = 13; 
+				minCon = 15;
+				minWis = 11; 
+				minCha = 5; 
+				minInt = 11;
+				remainStats = 4;
+				break;
+			case L1PcInstance.CLASSID_WARRIOR_MALE:
+			case L1PcInstance.CLASSID_WARRIOR_FEMALE:
+				minStr = 16;
+				minDex = 13;
+				minCon = 16;
+				minWis = 7;
+				minCha = 9;
+				minInt = 10;
+				remainStats = 4;
+				break;
+			case L1PcInstance.CLASSID_PRINCE:
+			case L1PcInstance.CLASSID_PRINCESS:
+				minStr = 13;
+				minDex = 9;
+				minCon = 11;
+				minWis = 11;
+				minCha = 13;
+				minInt = 9;
+				remainStats = 9;
+				break;
+			case L1PcInstance.CLASSID_KNIGHT_MALE:
+			case L1PcInstance.CLASSID_KNIGHT_FEMALE:
+				minStr = 16;
+				minDex = 12;
+				minCon = 16;
+				minWis = 9;
+				minCha = 10;
+				minInt = 8;
+				remainStats = 4;
+				break;
+			case L1PcInstance.CLASSID_WIZARD_MALE:
+			case L1PcInstance.CLASSID_WIZARD_FEMALE:
+				minStr = 8;
+				minDex = 7;
+				minCon = 12;
+				minInt = 14;
+				minWis = 14;
+				minCha = 8;
+				remainStats = 12;
+				break;
+			case L1PcInstance.CLASSID_ELF_MALE:
+			case L1PcInstance.CLASSID_ELF_FEMALE:
+				minStr = 10;
+				minDex = 12;
+				minCon = 12;
+				minWis = 12;
+				minInt = 12;
+				minCha = 9;
+				remainStats = 8;
+				break;
+			case L1PcInstance.CLASSID_DARKELF_MALE:
+			case L1PcInstance.CLASSID_DARKELF_FEMALE:
+				minStr = 15;
+				minDex = 12;
+				minCon = 12;
+				minWis = 10;
+				minCha = 8;
+				minInt = 11;
+				remainStats = 7;
+				break;
+			case L1PcInstance.CLASSID_DRAGONKNIGHT_MALE:
+			case L1PcInstance.CLASSID_DRAGONKNIGHT_FEMALE:
+				minStr = 13;
+				minDex = 11;
+				minCon = 14;
+				minWis = 10;
+				minCha = 8;
+				minInt = 10;
+				remainStats = 9;
+				break;
+			case L1PcInstance.CLASSID_ILLUSIONIST_MALE:
+			case L1PcInstance.CLASSID_ILLUSIONIST_FEMALE:
+				minStr = 9;
+				minDex = 10;
+				minCon = 12;
+				minWis = 14;
+				minCha = 8;
+				minInt = 12;
+				remainStats = 10;
+				break;
+			default:
+				return false;
+		}
+		
+		if (total != minStr + minDex + minCon + minWis + minCha + minInt + remainStats)
+		{
 			return false;
 		}
-		if (total != minStr + minDex + minCon + minWis + minCha + minInt
-				+ remainStats)
-			result = false;
-		if (getStr() < minStr || getStr() > MaxAbility) {
-			result = false;
+		if (getStr() < minStr || getStr() > MaxAbility)
+		{
+			return false;
 		}
-		if (getDex() < minDex || getDex() > MaxAbility) {
-			result = false;
+		if (getDex() < minDex || getDex() > MaxAbility)
+		{
+			return false;
 		}
-		if (getCon() < minCon || getCon() > MaxAbility) {
-			result = false;
+		if (getCon() < minCon || getCon() > MaxAbility)
+		{
+			return false;
 		}
-		if (getWis() < minWis || getWis() > MaxAbility) {
-			result = false;
+		if (getWis() < minWis || getWis() > MaxAbility)
+		{
+			return false;
 		}
-		if (getCha() < minCha || getCha() > MaxAbility) {
-			result = false;
+		if (getCha() < minCha || getCha() > MaxAbility)
+		{
+			return false;
 		}
-		if (getInt() < minInt || getInt() > MaxAbility) {
-			result = false;
-		}
-
-		if (currentLevel > 50
-				&& getAmount() - (highestLevel - 50 + getElixirCount() + 75) > 0) {
-			result = false;
-		}
-		if (highestLevel < 51 && getAmount() > 75 + getElixirCount()) {
-			result = false;
-		}
-		if (highestLevel > 50 && highestLevel - 50 < getBonusAbility()) {
-			result = false;
+		if (getInt() < minInt || getInt() > MaxAbility)
+		{
+			return false;
 		}
 
-		return result;
+		if (currentLevel > 50 && getAmount() - (highestLevel - 50 + getElixirCount() + 75) > 0)
+		{
+			return false;
+		}
+		if (highestLevel < 51 && getAmount() > 75 + getElixirCount())
+		{
+			return false;
+		}
+		if (highestLevel > 50 && highestLevel - 50 < getBonusAbility())
+		{
+			return false;
+		}
+
+		return true;
 	}
 
-	public void addSp(int i) {
+	public void addSp(int i)
+	{
 		sp += i;
 	}
 
-	public int getSp() {
+	public int getSp()
+	{
 		return getTrueSp() + sp;
 	}
 
-	public int getTrueSp() {
+	public int getTrueSp()
+	{
 		return getMagicLevel() + getMagicBonus();
 	}
 
-	public int getMagicLevel() {
-		if (character instanceof L1PcInstance
-				&& ((L1PcInstance) character).getClassFeature() != null)
-			return ((L1PcInstance) character).getClassFeature().getMagicLevel(
-					character.getLevel());
+	public int getMagicLevel()
+	{
+		if (character instanceof L1PcInstance && ((L1PcInstance) character).getClassFeature() != null)
+			return ((L1PcInstance) character).getClassFeature().getMagicLevel(character.getLevel());
 		return character.getLevel() / 4;
 	}
 
-	public int getMagicBonus() {
+	public int getMagicBonus()
+	{
 		int i = getTotalInt();
 		return CalcStat.마법보너스(i);
 		/*
@@ -565,7 +601,8 @@ public class Ability {
 		 */
 	}
 
-	public void initStat(final int classId) {
+	public void initStat(final int classId)
+	{
 		int minStr = 0, minDex = 0, minCon = 0, minWis = 0, minCha = 0, minInt = 0;
 
 		switch (classId) {
@@ -666,7 +703,8 @@ public class Ability {
 		baseCha = (byte) minCha;
 	}
 
-	public int[] getBaseStatDiff(int[] value) {
+	public int[] getBaseStatDiff(int[] value)
+	{
 		int[] returnValue = new int[6];
 		returnValue[0] = getBaseStr() - value[0];
 		returnValue[1] = getBaseDex() - value[1];
@@ -678,7 +716,8 @@ public class Ability {
 		return returnValue;
 	}
 
-	public int[] getMinStat(final int classId) {
+	public int[] getMinStat(final int classId)
+	{
 
 		int[] minabllity = new int[6];
 		// int minStr, minDex, minCon, minWis, minCha, minInt, remainStats;

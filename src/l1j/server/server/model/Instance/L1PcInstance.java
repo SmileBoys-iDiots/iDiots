@@ -7286,9 +7286,10 @@ public class L1PcInstance extends L1Character {
 		}
 	}
 
-	public void CheckStatus() {
-		if (!getAbility().isNormalAbility(getClassId(), getLevel(), getHighLevel(), getAbility().getBaseAmount())
-				&& !isGm()) {
+	public void CheckStatus()
+	{
+		if (!getAbility().isNormalAbility(getClassId(), getLevel(), getHighLevel(), getAbility().getBaseAmount()) && !isGm())
+		{
 			SpecialEventHandler.getInstance().ReturnStats(this);
 		}
 	}

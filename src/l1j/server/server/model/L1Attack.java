@@ -181,101 +181,6 @@ public class L1Attack {
 	private int _attckGrfxId = 0;
 
 	private int _attckActId = 0;
-	
-	private static final int[] strDmg = new int[128];
-
-	static {
-		// STR 데미지 보정
-		for (int str = 0; str <= 8; str++) {
-			// 1~8는 -2
-			strDmg[str] = -2;
-		}
-		for (int str = 9; str <= 10; str++) {
-			// 9~10는 -1
-			strDmg[str] = -1;
-		}
-		strDmg[11] = 0;     strDmg[12] = 0;     strDmg[13] = 1;    strDmg[14] = 1;
-		strDmg[15] = 2;		strDmg[16] = 2;		strDmg[17] = 3;	   strDmg[18] = 3;
-		strDmg[19] = 4;     strDmg[20] = 4;     strDmg[21] = 5;    strDmg[22] = 5;
-		strDmg[23] = 6;     strDmg[24] = 6;     strDmg[25] = 6;    strDmg[26] = 7;
-		strDmg[27] = 7;     strDmg[28] = 7;     strDmg[29] = 8;    strDmg[30] = 8;
-		strDmg[31] = 9;     strDmg[32] = 9;     strDmg[33] = 10;   strDmg[34] = 11;
-		strDmg[35] = 12;    strDmg[36] = 12;    strDmg[37] = 12;   strDmg[38] = 12;
-		strDmg[39] = 13;    strDmg[40] = 13;    strDmg[41] = 13;   strDmg[42] = 13;
-		strDmg[43] = 14;    strDmg[44] = 14;    strDmg[45] = 14;   strDmg[46] = 14;
-		strDmg[47] = 15;    strDmg[48] = 15;    strDmg[49] = 16;   strDmg[50] = 17;
-		int dmg = 18; 
-		for (int str = 51; str <= 127; str++) { // 51~127은 4마다＋1
-			if (str % 4 == 1) {
-				dmg++;
-			}
-			strDmg[str] = dmg;
-		}
-	}
-
-		private static final int[] dexDmg = new int[128];
-
-		static {
-			// DEX 데미지 보정
-			for (int dex = 0; dex <= 11; dex++) {
-				// 0~11는 0
-				dexDmg[dex] = 0;
-			}
-			dexDmg[12] = 1;     dexDmg[13] = 1;     dexDmg[14] = 1;     dexDmg[15] = 1;
-			dexDmg[16] = 2;     dexDmg[17] = 2;     dexDmg[18] = 2;     dexDmg[19] = 2;		
-			dexDmg[20] = 3;		dexDmg[21] = 3;		dexDmg[22] = 3;     dexDmg[23] = 3;		
-			dexDmg[24] = 4;		dexDmg[25] = 4;		dexDmg[26] = 4;     dexDmg[27] = 4;		
-			dexDmg[28] = 5;		dexDmg[29] = 5;		dexDmg[30] = 5;     dexDmg[31] = 5;		
-			dexDmg[32] = 6;		dexDmg[33] = 6;		dexDmg[34] = 6;     dexDmg[35] = 6;     
-			
-			int dmg = 7;
-			for (int dex = 36; dex <= 127; dex++) { // 48~127은 4마다＋1 //#
-				if (dex % 4 == 1) {
-					dmg++;
-				}
-				dexDmg[dex] = dmg;
-			}
-		}
-
-		private static final int[] IntDmg = new int[128]; // 키링크 인트
-
-		 static {
-				for (int Int = 0; Int <= 8; Int++) {
-					// 1~8는 -2
-					IntDmg[Int] = -2;
-				}
-				for (int Int = 9; Int <= 14; Int++) {
-					// 9~10는 -1
-					IntDmg[Int] = -1;
-				}
-				IntDmg[15] = 0;
-				IntDmg[16] = 0;
-				IntDmg[17] = 1;
-				IntDmg[18] = 1;
-				IntDmg[19] = 2;
-				IntDmg[20] = 2;
-				IntDmg[21] = 2;
-				IntDmg[22] = 2;
-				IntDmg[23] = 3;
-				IntDmg[24] = 3;
-				IntDmg[25] = 3;
-				IntDmg[26] = 4;
-				IntDmg[27] = 4;
-				IntDmg[28] = 4;
-				IntDmg[29] = 5;
-				IntDmg[30] = 5;
-				IntDmg[31] = 5;
-				IntDmg[32] = 6;
-				IntDmg[33] = 6;
-				IntDmg[34] = 6;
-				int dmg = 7; 
-				for (int Int = 35; Int <= 127; Int++) { // 35~127은 4마다＋1
-					if (Int % 4 == 1) {
-						dmg++;
-					}
-					IntDmg[Int] = dmg;
-				}
-			}
 
 	// 공격자가 플레이어의 경우의 무기 정보
 	private L1ItemInstance Sweapon = null;// 세컨웨폰
@@ -338,84 +243,99 @@ public class L1Attack {
 
 	private int _leverage = 10; // 1/10배로 표현한다.
 
-	public void setLeverage(int i) {
+	public void setLeverage(int i)
+	{
 		_leverage = i;
 	}
 
-	private int getLeverage() {
+	private int getLeverage()
+	{
 		return _leverage;
 	}
 
 	// 공격자가 플레이어의 경우의 스테이터스에 의한 보정
-	public void setActId(int actId) {
+	public void setActId(int actId)
+	{
 		_attckActId = actId;
 	}
 
-	public void setGfxId(int gfxId) {
+	public void setGfxId(int gfxId
+			) {
 		_attckGrfxId = gfxId;
 	}
 
-	public int getActId() {
+	public int getActId()
+	{
 		return _attckActId;
 	}
 
-	public int getGfxId() {
+	public int getGfxId()
+	{
 		return _attckGrfxId;
 	}
 
-	public L1Attack(L1Character attacker, L1Character target) {
-		if (attacker instanceof L1PcInstance) {
-			_pc = (L1PcInstance) attacker;
-			if (target instanceof L1PcInstance) {
+	public L1Attack(L1Character attacker, L1Character target)
+	{
+		if (attacker instanceof L1PcInstance)
+		{
+			_pc = (L1PcInstance) attacker;			
+			if (target instanceof L1PcInstance)
+			{
 				_targetPc = (L1PcInstance) target;
 				_calcType = PC_PC;
-			} else if (target instanceof L1NpcInstance) {
+			}
+			else if (target instanceof L1NpcInstance)
+			{
 				_targetNpc = (L1NpcInstance) target;
 				_calcType = PC_NPC;
 			}
+			
 			// 무기 정보의 취득
 			weapon = _pc.getWeapon();
 			Sweapon = _pc.getSecondWeapon();
-			if (Sweapon != null) {
+			if (Sweapon != null)
+			{
 				_SweaponId = Sweapon.getItem().getItemId();
 				_SweaponType = Sweapon.getItem().getType1();
-				_SweaponAddHit = Sweapon.getItem().getHitModifier()
-						+ Sweapon.getHitByMagic();
-				_SweaponAddDmg = Sweapon.getItem().getDmgModifier()
-						+ Sweapon.getDmgByMagic();
+				_SweaponAddHit = Sweapon.getItem().getHitModifier()	+ Sweapon.getHitByMagic();
+				_SweaponAddDmg = Sweapon.getItem().getDmgModifier()	+ Sweapon.getDmgByMagic();
 				_SweaponType1 = Sweapon.getItem().getType();
 				_SweaponSmall = Sweapon.getItem().getDmgSmall();
 				_SweaponLarge = Sweapon.getItem().getDmgLarge();
 
 				_SweaponRange = Sweapon.getItem().getRange();
 				_SweaponBless = Sweapon.getItem().getBless();
-				_SweaponEnchant = Sweapon.getEnchantLevel()
-						- Sweapon.get_durability(); // 손상분 마이너스
+				_SweaponEnchant = Sweapon.getEnchantLevel()	- Sweapon.get_durability(); // 손상분 마이너스
 				_SweaponMaterial = Sweapon.getItem().getMaterial();
 				_SweaponAttrEnchantLevel = Sweapon.getAttrEnchantLevel();
 			}
-			if (weapon != null) {
+			if (weapon != null)
+			{
 				_weaponId = weapon.getItem().getItemId();
 				_weaponType = weapon.getItem().getType1();
-				_weaponAddHit = weapon.getItem().getHitModifier()
-						+ weapon.getHitByMagic();
-				_weaponAddDmg = weapon.getItem().getDmgModifier()
-						+ weapon.getDmgByMagic()+ weapon.getItem().getaddDmg();
+				_weaponAddHit = weapon.getItem().getHitModifier() + weapon.getHitByMagic();
+				_weaponAddDmg = weapon.getItem().getDmgModifier() + weapon.getDmgByMagic()+ weapon.getItem().getaddDmg();
 				_weaponType1 = weapon.getItem().getType();
 				_weaponSmall = weapon.getItem().getDmgSmall();
 				_weaponLarge = weapon.getItem().getDmgLarge();
 				_weaponRange = weapon.getItem().getRange();
 				_weaponBless = weapon.getItem().getBless();
-				if (_weaponType != 20 && _weaponType != 62) {
-					_weaponEnchant = weapon.getEnchantLevel()
-							- weapon.get_durability(); // 손상분 마이너스
-				} else {
+				
+				if (_weaponType != 20 && _weaponType != 62)
+				{
+					_weaponEnchant = weapon.getEnchantLevel() - weapon.get_durability(); // 손상분 마이너스
+				}
+				else 
+				{
 					_weaponEnchant = weapon.getEnchantLevel();
 				}
 				_weaponMaterial = weapon.getItem().getMaterial();
-				if (_weaponType == 20) { // 화살의 취득
+				
+				if (_weaponType == 20)
+				{ // 화살의 취득
 					_arrow = _pc.getInventory().getArrow();
-					if (_arrow != null) {
+					if (_arrow != null)
+					{
 						if (_arrow.getItemId() == 50747)// 수령
 							_weaponAttr = 1;
 						if (_arrow.getItemId() == 50748)// 풍령
@@ -428,9 +348,12 @@ public class L1Attack {
 						_weaponBless = _arrow.getItem().getBless();
 						_weaponMaterial = _arrow.getItem().getMaterial();
 					}
-				} else if (_weaponType == 62) { // 스팅의 취득
+				}
+				else if (_weaponType == 62)
+				{ // 스팅의 취득
 					_sting = _pc.getInventory().getSting();
-					if (_sting != null) {
+					if (_sting != null)
+					{
 						_weaponBless = _sting.getItem().getBless();
 						_weaponMaterial = _sting.getItem().getMaterial();
 					}
@@ -439,34 +362,42 @@ public class L1Attack {
 				_weaponAttrEnchantLevel = weapon.getAttrEnchantLevel();
 			}
 			// 스테이터스에 의한 추가 데미지 보정
-			if (_weaponType == 20 || _weaponType == 62) { // 활의 경우는 DEX치 참조
-			    _statusDamage = dexDmg[_pc.getAbility().getTotalDex()] + CalcStat.원거리대미지(_pc.getAbility().getTotalDex());
-			   } else {
-			    _statusDamage = strDmg[_pc.getAbility().getTotalStr()] + CalcStat.근거리대미지(_pc.getAbility().getTotalStr());
-			   }
-			} 
-		
-		
-		else if (_weaponId == 410003 || _weaponId == 410004
-				|| _weaponId == 411030 || _weaponId == 450006
-				|| _weaponId == 450013) { // 키링크의 경우 INT치 참조
-			_statusDamage = IntDmg[_pc.getAbility().getTotalInt()] + CalcStat.마법대미지(_pc.getAbility().getTotalInt());
-		} else if (attacker instanceof L1NpcInstance) {
+			if (_weaponType == 20 || _weaponType == 62)
+			{ // 활의 경우는 DEX치 참조
+			    _statusDamage = CalcStat.원거리대미지(_pc.getAbility().getTotalDex());
+			}		
+			else if (_weaponId == 410003 || _weaponId == 410004 || _weaponId == 411030 || _weaponId == 450006 || _weaponId == 450013)
+			{ // 키링크의 경우 INT치 참조
+				_statusDamage = CalcStat.마법대미지(_pc.getAbility().getTotalInt());
+			}
+			else
+			{
+			    _statusDamage = CalcStat.근거리대미지(_pc.getAbility().getTotalStr());
+			}
+		}
+		else if (attacker instanceof L1NpcInstance)
+		{
 			_npc = (L1NpcInstance) attacker;
-			if (target instanceof L1PcInstance) {
+			if (target instanceof L1PcInstance)
+			{
 				_targetPc = (L1PcInstance) target;
 				_calcType = NPC_PC;
-			} else if (target instanceof L1NpcInstance) {
+			}
+			else if (target instanceof L1NpcInstance) 
+			{
 				_targetNpc = (L1NpcInstance) target;
 				_calcType = NPC_NPC;
 			}
 		}
-		if (target != null) {
+		if (target != null)
+		{
 			_target = target;
 			_targetId = target.getId();
 			_targetX = target.getX();
 			_targetY = target.getY();
-		} else {
+		}
+		else
+		{
 			_targetId = 0;
 		}
 	}
@@ -475,85 +406,112 @@ public class L1Attack {
 	/**
 	 * 해당하는 좌표로 방향을 전환할때 사용.
 	 */
-	public int calcheading(int myx, int myy, int tx, int ty) {
-		if (tx > myx && ty > myy) {
+	public int calcheading(int myx, int myy, int tx, int ty)
+	{
+		if (tx > myx && ty > myy)
+		{
 			return 3;
-		} else if (tx < myx && ty < myy) {
+		}
+		else if (tx < myx && ty < myy)
+		{
 			return 7;
-		} else if (tx > myx && ty == myy) {
+		}
+		else if (tx > myx && ty == myy)
+		{
 			return 2;
-		} else if (tx < myx && ty == myy) {
+		}
+		else if (tx < myx && ty == myy)
+		{
 			return 6;
-		} else if (tx == myx && ty < myy) {
+		}
+		else if (tx == myx && ty < myy)
+		{
 			return 0;
-		} else if (tx == myx && ty > myy) {
+		}
+		else if (tx == myx && ty > myy)
+		{
 			return 4;
-		} else if (tx < myx && ty > myy) {
+		}
+		else if (tx < myx && ty > myy) 
+		{
 			return 5;
-		} else {
+		}
+		else
+		{
 			return 1;
 		}
 	}
 
-	public int calcheading(L1Character o, int x, int y) {
+	public int calcheading(L1Character o, int x, int y)
+	{
 		return calcheading(o.getX(), o.getY(), x, y);
 	}
 
-	public boolean calcHit() {
-		if (_calcType == PC_PC || _calcType == PC_NPC) {
+	public boolean calcHit()
+	{
+		if (_calcType == PC_PC || _calcType == PC_NPC)
+		{
 			/** 2016.11.26 MJ 앱센터 LFC **/
-			if(_pc instanceof L1PcInstance){
+			if(_pc instanceof L1PcInstance)
+			{
 				/* lfc 게임인 래디중일때는 miss */
 				if(_pc.getInstStatus() == InstStatus.INST_USERSTATUS_LFCINREADY)
 					return false;
 			}
 			
-			if (_target.getX() == _pc.getX() && _target.getY() == _pc.getY() && _target.getMapId() == _target.getMapId()) {
+			if (_target.getX() == _pc.getX() && _target.getY() == _pc.getY() && _target.getMapId() == _target.getMapId())
+			{
 				_isHit = true;
 				return true;
 			}
-			if (_target instanceof L1MonsterInstance) {
+			if (_target instanceof L1MonsterInstance)
+			{
 				L1MonsterInstance mon = (L1MonsterInstance) _target;
-				if (mon.isreodie) {
+				if (mon.isreodie)
+				{
 					return false;
 				}
 			}
-			boolean door = World.문이동(_pc.getX(), _pc.getY(), _pc.getMapId(),
-					calcheading(_pc, _target.getX(), _target.getY()));
-			boolean tail = World.isThroughAttack(_pc.getX(), _pc.getY(),
-					_pc.getMapId(),
-					calcheading(_pc, _target.getX(), _target.getY()));
-			if (_pc.getX() == _target.getX() && _pc.getY() == _target.getY()
-					&& _pc.getMapId() == _target.getMapId())
+			boolean door = World.문이동(_pc.getX(), _pc.getY(), _pc.getMapId(), calcheading(_pc, _target.getX(), _target.getY()));
+			boolean tail = World.isThroughAttack(_pc.getX(), _pc.getY(), _pc.getMapId(), calcheading(_pc, _target.getX(), _target.getY()));
+			if (_pc.getX() == _target.getX() && _pc.getY() == _target.getY() && _pc.getMapId() == _target.getMapId())
+			{
 				tail = true;
-			if (door || !tail) {
-				if (!(_target instanceof L1DoorInstance)) {
+			}
+			if (door || !tail)
+			{
+				if (!(_target instanceof L1DoorInstance))
+				{
 					_isHit = false;
 					return _isHit;
 				}
 			}
-			if (_pc instanceof L1RobotInstance && _pc.isElf()) {
-				if (!_pc.getLocation().isInScreen(_target.getLocation())) {
+			if (_pc instanceof L1RobotInstance && _pc.isElf())
+			{
+				if (!_pc.getLocation().isInScreen(_target.getLocation()))
+				{
 					_isHit = false;
 					return _isHit;
 				}
-			} else if (_weaponRange != -1) {
-				if (_target instanceof L1MonsterInstance) {
-					if (((L1MonsterInstance) _target).getNpcId() == 100584
-							|| ((L1MonsterInstance) _target).getNpcId() == 100588
-							|| ((L1MonsterInstance) _target).getNpcId() == 100589)
+			}
+			else if (_weaponRange != -1)
+			{
+				if (_target instanceof L1MonsterInstance)
+				{
+					if (((L1MonsterInstance) _target).getNpcId() == 100584 || ((L1MonsterInstance) _target).getNpcId() == 100588 || ((L1MonsterInstance) _target).getNpcId() == 100589)
 						_weaponRange++;
 				}
-				if (_pc.getLocation()
-						.getTileLineDistance(_target.getLocation()) > _weaponRange + 1) {
+				if (_pc.getLocation().getTileLineDistance(_target.getLocation()) > _weaponRange + 1)
+				{
 					_isHit = false;
 					return _isHit;
 				}
-				if (_weaponType1 == 17) {
+				if (_weaponType1 == 17)
+				{
 					_isHit = true;
-					if (_target instanceof L1NpcInstance) {
-						int npcId = ((L1NpcInstance) _target).getNpcTemplate()
-								.get_npcId();
+					if (_target instanceof L1NpcInstance)
+					{
+						int npcId = ((L1NpcInstance) _target).getNpcTemplate().get_npcId();
 						if (!_pc.getSkillEffectTimerSet().hasSkillEffect(
 								STATUS_CURSE_BARLOG)
 								&& (npcId == 445752 || npcId == 445753 //발록버프 해제
@@ -575,33 +533,35 @@ public class L1Attack {
 								|| npcId == 7000024 || npcId == 7000028
 								|| npcId == 7000029 || npcId == 7000030
 								|| npcId == 7000011 || npcId == 7000018
-								|| npcId == 7000025 || npcId == 7000042)) {// 발록
-							_isHit = false;
-						} else if (!_pc.getSkillEffectTimerSet() //야히 버프없이 때리게 가능
-								.hasSkillEffect(STATUS_CURSE_YAHEE)
-								&& (npcId == 45675111 || npcId == 810821111
-								|| npcId == 45625111 || npcId == 456741111 || npcId == 1005701111)) {
+								|| npcId == 7000025 || npcId == 7000042)) 
+						{// 발록
 							_isHit = false;
 						}
-					} else if (_target instanceof L1PcInstance) {
-						if (_target.getSkillEffectTimerSet().hasSkillEffect(
-								COUNTER_MAGIC)) {
-							_target.getSkillEffectTimerSet().removeSkillEffect(
-									COUNTER_MAGIC);
+						else if (!_pc.getSkillEffectTimerSet() //야히 버프없이 때리게 가능
+								.hasSkillEffect(STATUS_CURSE_YAHEE)
+								&& (npcId == 45675111 || npcId == 810821111
+								|| npcId == 45625111 || npcId == 456741111 || npcId == 1005701111))
+						{
+							_isHit = false;
+						}
+					} 
+					else if (_target instanceof L1PcInstance)
+					{
+						if (_target.getSkillEffectTimerSet().hasSkillEffect(COUNTER_MAGIC))
+						{
+							_target.getSkillEffectTimerSet().removeSkillEffect(COUNTER_MAGIC);
 							int castgfx = 10702;
-							Broadcaster.broadcastPacket(_target,
-									new S_SkillSound(_target.getId(), castgfx),
-									true);
-							((L1PcInstance) _target).sendPackets(
-									new S_SkillSound(_target.getId(), castgfx),
-									true);
+							Broadcaster.broadcastPacket(_target, new S_SkillSound(_target.getId(), castgfx), true);
+							((L1PcInstance)_target).sendPackets( new S_SkillSound(_target.getId(), castgfx), true);
 							_isHit = false;
 						}
 					}
 					return _isHit;
 				}
-			} else {
-				if (!_pc.getLocation().isInScreen(_target.getLocation())) {
+			} else
+			{
+				if (!_pc.getLocation().isInScreen(_target.getLocation()))
+				{
 					_isHit = false;
 					return _isHit;
 				}
@@ -610,84 +570,115 @@ public class L1Attack {
 					&& _weaponId != 190 && _weaponId != 100190
 					&& _weaponId != 11011 && _weaponId != 11012
 					&& _weaponId != 11013 && _weaponId != 7201 && _weaponId != 30082 && _weaponId != 30091
-					&& _arrow == null) {
+					&& _arrow == null)
+			{
 				_isHit = false; // 화살이 없는 경우는 미스
-			} else if (_weaponType == 62 && _sting == null) {
+			}
+			else if (_weaponType == 62 && _sting == null)
+			{
 				_isHit = false; // 스팅이 없는 경우는 미스
-			} else if (!(_target instanceof L1DoorInstance)
-					&& (!CharPosUtil.isAreaAttack(_pc, _targetX, _targetY,
-							_target.getMapId()) || !CharPosUtil.isAreaAttack(
-									_target, _pc.getX(), _pc.getY(), _pc.getMapId()))) {
+			}
+			else if (!(_target instanceof L1DoorInstance)&& (!CharPosUtil.isAreaAttack(_pc, _targetX, _targetY,_target.getMapId())
+					|| !CharPosUtil.isAreaAttack(_target, _pc.getX(), _pc.getY(), _pc.getMapId())))
+			{
 				_isHit = false; // 공격자가 플레이어의 경우는 장애물 판정
-			} else if (_weaponId == 247 || _weaponId == 248 || _weaponId == 249) {
+			}
+			else if (_weaponId == 247 || _weaponId == 248 || _weaponId == 249)
+			{
 				_isHit = false; // 시련의 검B~C　공격 무효
-			} else if (_calcType == PC_PC) {
-				if (CharPosUtil.getZoneType(_pc) == 1 || CharPosUtil.getZoneType(_targetPc) == 1) {
+			}
+			else if (_calcType == PC_PC)
+			{
+				if (CharPosUtil.getZoneType(_pc) == 1 || CharPosUtil.getZoneType(_targetPc) == 1)
+				{
 			//		_pc.sendPackets(new S_SkillSound(_target.getId(), 13418));// 이펙트
 			//		_targetPc.sendPackets(new S_SkillSound(_target.getId(), 13418));// 이펙트
 					_isHit = false;
 				}
-				if(_pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.앱솔루트블레이드) && _targetPc.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER) ){
-					int c = _pc.getLevel()-80;
-					if(c >8) //최대
+				if(_pc.getSkillEffectTimerSet().hasSkillEffect(L1SkillId.앱솔루트블레이드) && _targetPc.getSkillEffectTimerSet().hasSkillEffect(ABSOLUTE_BARRIER) )
+				{
+					int c = _pc.getLevel() - 80;
+					if(c > 8) //최대
 						c=8;
-					if(c <3)
+					if(c < 3)
 						c=1; //최소
-					if(CommonUtil.random(100) <= c){
+					if(CommonUtil.random(100) <= c)
+					{
 						_targetPc.getSkillEffectTimerSet().removeSkillEffect(ABSOLUTE_BARRIER);
 						_pc.sendPackets(new S_SkillSound(_targetPc.getId(), 14539));
 						_pc.broadcastPacket(new S_SkillSound(_targetPc.getId(), 14539));		
 					}			
 				}
 				_isHit = calcPcPcHit();
-				if (_isHit == false) {
+				if (_isHit == false)
+				{
 			//		_pc.sendPackets(new S_SkillSound(_target.getId(), 13418));// 이펙트
 				//	_targetPc.sendPackets(new S_SkillSound(_target.getId(), 13418));// 이펙트
 				}
-			} else if (_calcType == PC_NPC) {
+			}
+			else if (_calcType == PC_NPC)
+			{
 				/** 오브젝트가 만약 펫이라면 어택 리셋 */
-				if(_targetNpc instanceof L1PetInstance) {
+				if(_targetNpc instanceof L1PetInstance)
+				{
 					L1PcInstance PetMaster = (L1PcInstance) _targetNpc.getMaster();
-					if(PetMaster == null ) _isHit = false;
+					if(PetMaster == null )
+						_isHit = false;
 					/** 보라 상태에서만 pc를 공격 할수잇음 */
-					if(_pc.isPinkName() && PetMaster.isPinkName()){
+					if(_pc.isPinkName() && PetMaster.isPinkName())
+					{
 						_isHit = calcPcNpcHit();
-					}else _isHit = false;
-				}else {
+					}
+					else _isHit = false;
+				}
+				else
+				{
 					_isHit = calcPcNpcHit();
-					if (_isHit == false) {
+					if (_isHit == false)
+					{
 						_pc.sendPackets(new S_SkillSound(_targetNpc.getId(), 13418));// 이펙트
 					}
 				}
 			}
-		} else if (_calcType == NPC_PC) {
+		} else if (_calcType == NPC_PC)
+		{
 			/** 오브젝트가 만약 펫이라면 어택 리셋 */
-			if(_npc instanceof L1PetInstance) {
+			if(_npc instanceof L1PetInstance)
+			{
 				/** 보라 상태에서만 pc를 공격 할수잇음 */
 				L1PcInstance PetMaster = (L1PcInstance) _npc.getMaster();
-				if(_targetPc.isPinkName() && PetMaster.isPinkName()){
+				if(_targetPc.isPinkName() && PetMaster.isPinkName())
+				{
 					_isHit = calcNpcPcHit();
-				}else _isHit = false;
-				if (_isHit == false) {
-					if(_npc instanceof L1PetInstance) {
+				}
+				else _isHit = false;
+				if (_isHit == false)
+				{
+					if(_npc instanceof L1PetInstance)
+					{
 						L1PetInstance Pet = (L1PetInstance) _npc;
 						/** 투지 상태라면 크리티컬 적용 */
 						if(Pet.SkillCheck(L1SkillId.Fighting)) Pet.setFightingCombo(0);
 						if(PetMaster != null) PetMaster.sendPackets(new S_SkillSound(_npc.getId(), 13418), true);
 					}
 				}
-			}else{
+			}
+			else
+			{
 				_isHit = calcNpcPcHit();
-				if (_isHit == false) {
+				if (_isHit == false)
+				{
 					_targetPc.sendPackets(new S_SkillSound(_target.getId(), 13418));// 이펙트
 				}
 			}
-		} else 
-			
-			if (_calcType == NPC_NPC) {
+		} 
+		else if (_calcType == NPC_NPC)
+		{
 			_isHit = calcNpcNpcHit();
-			if (_isHit == false) {
-				if(_npc instanceof L1PetInstance) {
+			if (_isHit == false)
+			{
+				if(_npc instanceof L1PetInstance)
+				{
 					L1PetInstance Pet = (L1PetInstance) _npc;
 					/** 투지 상태라면 크리티컬 적용 */
 					if(Pet.SkillCheck(L1SkillId.Fighting)) Pet.setFightingCombo(0);

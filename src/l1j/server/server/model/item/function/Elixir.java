@@ -40,131 +40,140 @@ public class Elixir extends L1ItemInstance {
 
 	@Override
 	public void clickItem(L1Character cha, ClientBasePacket packet) {
-		try {
-			if (cha instanceof L1PcInstance) {
+		try
+		{
+			if (cha instanceof L1PcInstance) 
+			{
 				L1PcInstance pc = (L1PcInstance) cha;
 				L1ItemInstance useItem = pc.getInventory()
 						.getItem(this.getId());
 				int itemId = useItem.getItemId();
 				int item_minlvl = ((L1EtcItem) useItem.getItem()).getMinLevel();
 				int item_maxlvl = ((L1EtcItem) useItem.getItem()).getMaxLevel();
-				int ElixirLev = ((pc.getLevel() - 45) / 5) - pc.getAbility().getElixirCount();
+				// 엘릭서 사용 가능 갯수는 50부터 1개 3레벨당 1개씩 추가
+				int ElixirUseCount = (((pc.getLevel() - 50) / 3) + 1) - pc.getAbility().getElixirCount();
 
-				if (item_minlvl != 0 && item_minlvl > pc.getLevel()
-						&& !pc.isGm()) {
-					pc.sendPackets(
-							new S_ServerMessage(318, String
-									.valueOf(item_minlvl)), true);
+				if (item_minlvl != 0 && item_minlvl > pc.getLevel()	&& !pc.isGm())
+				{
+					pc.sendPackets(new S_ServerMessage(318, String.valueOf(item_minlvl)), true);
 					// 이 아이템은%0레벨 이상이 되지 않으면 사용할 수 없습니다.
 					return;
-				} else if (item_maxlvl != 0 && item_maxlvl < pc.getLevel()
-						&& !pc.isGm()) {
-					pc.sendPackets(
-							new S_ServerMessage(673, String
-									.valueOf(item_maxlvl)), true);
+				}
+				else if (item_maxlvl != 0 && item_maxlvl < pc.getLevel() && !pc.isGm())
+				{
+					pc.sendPackets(new S_ServerMessage(673, String.valueOf(item_maxlvl)), true);
 					// 이 아이템은%d레벨 이상만 사용할 수 있습니다.
 					return;
 				}
-				switch (itemId) {
-				case 40033:
-					if (pc.getAbility().getStr() < 45
-							&& pc.getAbility().getElixirCount() < 10 && ElixirLev >= 1) {
-						
-						pc.getAbility().addStr((byte) 1);
-						pc.getAbility().setElixirCount(
-								pc.getAbility().getElixirCount() + 1);
-						pc.getInventory().removeItem(useItem, 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc), true);
-						pc.save();
-						pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
-					} else {
-						pc.sendPackets(new S_ServerMessage(4473), true);
-						pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 5lv단위로 섭취가 가능합니다 ."), true);
-					}
-					break;
-				case 40034:
-					if (pc.getAbility().getCon() < 45
-							&& pc.getAbility().getElixirCount() < 10 && ElixirLev >= 1) {
-						pc.getAbility().addCon((byte) 1);
-						pc.getAbility().setElixirCount(
-								pc.getAbility().getElixirCount() + 1);
-						pc.getInventory().removeItem(useItem, 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc), true);
-						pc.save();
-						pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
-					} else {
-						pc.sendPackets(new S_ServerMessage(4473), true);
-						pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 5lv단위로 섭취가 가능합니다 ."), true);
-					}
-					break;
-				case 40035:
-					if (pc.getAbility().getDex() < 45
-							&& pc.getAbility().getElixirCount() < 10 && ElixirLev >= 1) {
-						pc.getAbility().addDex((byte) 1);
-						pc.resetBaseAc();
-						pc.getAbility().setElixirCount(
-								pc.getAbility().getElixirCount() + 1);
-						pc.getInventory().removeItem(useItem, 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc), true);
-						pc.sendPackets(
-								new S_PacketBox(S_PacketBox.char_ER, pc
-										.get_PlusEr()), true);
-						pc.save();
-						pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
-					} else {
-						pc.sendPackets(new S_ServerMessage(4473), true);
-						pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 5lv단위로 섭취가 가능합니다 ."), true);
-					}
-					break;
-				case 40036:
-					if (pc.getAbility().getInt() < 45
-							&& pc.getAbility().getElixirCount() < 10 && ElixirLev >= 1) {
-						pc.getAbility().addInt((byte) 1);
-						pc.getAbility().setElixirCount(
-								pc.getAbility().getElixirCount() + 1);
-						pc.getInventory().removeItem(useItem, 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc), true);
-						pc.save();
-						pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
-					} else {
-						pc.sendPackets(new S_ServerMessage(4473), true); 
-						pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 5lv단위로 섭취가 가능합니다 ."), true);
-					}
-					break;
-				case 40037:
-					if (pc.getAbility().getWis() < 45
-							&& pc.getAbility().getElixirCount() < 10 && ElixirLev >= 1) {
-						pc.getAbility().addWis((byte) 1);
-						pc.resetBaseMr();
-						pc.getAbility().setElixirCount(
-								pc.getAbility().getElixirCount() + 1);
-						pc.getInventory().removeItem(useItem, 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc), true);
-						pc.save();
-						pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
-					} else {
-						pc.sendPackets(new S_ServerMessage(4473), true);
-						pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 5lv단위로 섭취가 가능합니다 ."), true);
-					}
-					break;
-				case 40038:
-					if (pc.getAbility().getCha() < 45
-							&& pc.getAbility().getElixirCount() < 10 && ElixirLev >= 1) {
-						pc.getAbility().addCha((byte) 1);
-						pc.getAbility().setElixirCount(
-								pc.getAbility().getElixirCount() + 1);
-						pc.getInventory().removeItem(useItem, 1);
-						pc.sendPackets(new S_OwnCharStatus2(pc), true);
-						pc.save();
-						pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
-					} else {
-						pc.sendPackets(new S_ServerMessage(4473), true); 
-						pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 5lv단위로 섭취가 가능합니다 ."), true);
-					}
-					break;
+				
+				switch (itemId)
+				{
+					case 40033:
+						if (pc.getAbility().getStr() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						{						
+							pc.getAbility().addStr((byte) 1);
+							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
+							pc.getInventory().removeItem(useItem, 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc), true);
+							pc.save();
+							pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
+						}
+						else
+						{
+							pc.sendPackets(new S_ServerMessage(4473), true);
+							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
+						}
+						break;
+					case 40034:
+						if (pc.getAbility().getCon() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						{
+							pc.getAbility().addCon((byte) 1);
+							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
+							pc.getInventory().removeItem(useItem, 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc), true);
+							pc.save();
+							pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
+						} 
+						else
+						{
+							pc.sendPackets(new S_ServerMessage(4473), true);
+							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
+						}
+						break;
+					case 40035:
+						if (pc.getAbility().getDex() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						{
+							pc.getAbility().addDex((byte) 1);
+							pc.resetBaseAc();
+							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
+							pc.getInventory().removeItem(useItem, 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc), true);
+							pc.sendPackets(
+									new S_PacketBox(S_PacketBox.char_ER, pc
+											.get_PlusEr()), true);
+							pc.save();
+							pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
+						}
+						else
+						{
+							pc.sendPackets(new S_ServerMessage(4473), true);
+							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
+						}
+						break;
+					case 40036:
+						if (pc.getAbility().getInt() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						{
+							pc.getAbility().addInt((byte) 1);
+							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
+							pc.getInventory().removeItem(useItem, 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc), true);
+							pc.save();
+							pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
+						}
+						else
+						{
+							pc.sendPackets(new S_ServerMessage(4473), true); 
+							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
+						}
+						break;
+					case 40037:
+						if (pc.getAbility().getWis() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						{
+							pc.getAbility().addWis((byte) 1);
+							pc.resetBaseMr();
+							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
+							pc.getInventory().removeItem(useItem, 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc), true);
+							pc.save();
+							pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
+						}
+						else
+						{
+							pc.sendPackets(new S_ServerMessage(4473), true);
+							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
+						}
+						break;
+					case 40038:
+						if (pc.getAbility().getCha() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						{
+							pc.getAbility().addCha((byte) 1);
+							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
+							pc.getInventory().removeItem(useItem, 1);
+							pc.sendPackets(new S_OwnCharStatus2(pc), true);
+							pc.save();
+							pc.sendPackets(new S_Elixir(S_Elixir.Elixir, pc.getAbility().getElixirCount()));
+						}
+						else
+						{
+							pc.sendPackets(new S_ServerMessage(4473), true); 
+							pc.sendPackets(new S_SystemMessage("\\aH알림: 엘릭서는 50lv부터 3lv단위로 섭취가 가능합니다 ."), true);
+						}
+						break;
 				}
 			}
-		} catch (Exception e) {
+		}
+		catch (Exception e)
+		{
 		}
 	}
 }
