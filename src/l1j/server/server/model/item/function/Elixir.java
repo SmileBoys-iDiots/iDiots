@@ -51,7 +51,8 @@ public class Elixir extends L1ItemInstance {
 				int item_minlvl = ((L1EtcItem) useItem.getItem()).getMinLevel();
 				int item_maxlvl = ((L1EtcItem) useItem.getItem()).getMaxLevel();
 				// 엘릭서 사용 가능 갯수는 50부터 1개 3레벨당 1개씩 추가
-				int ElixirUseCount = (((pc.getLevel() - 50) / 3) + 1) - pc.getAbility().getElixirCount();
+				int ElixirMaxCount = ((pc.getLevel() - 50) / 3);
+				int ElixirUseCount = ((pc.getLevel() - 50) / 3) - pc.getAbility().getElixirCount();
 
 				if (item_minlvl != 0 && item_minlvl > pc.getLevel()	&& !pc.isGm())
 				{
@@ -69,7 +70,7 @@ public class Elixir extends L1ItemInstance {
 				switch (itemId)
 				{
 					case 40033:
-						if (pc.getAbility().getStr() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						if (pc.getAbility().getStr() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{						
 							pc.getAbility().addStr((byte) 1);
 							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
@@ -85,7 +86,7 @@ public class Elixir extends L1ItemInstance {
 						}
 						break;
 					case 40034:
-						if (pc.getAbility().getCon() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						if (pc.getAbility().getCon() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{
 							pc.getAbility().addCon((byte) 1);
 							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
@@ -101,7 +102,7 @@ public class Elixir extends L1ItemInstance {
 						}
 						break;
 					case 40035:
-						if (pc.getAbility().getDex() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						if (pc.getAbility().getDex() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{
 							pc.getAbility().addDex((byte) 1);
 							pc.resetBaseAc();
@@ -121,7 +122,7 @@ public class Elixir extends L1ItemInstance {
 						}
 						break;
 					case 40036:
-						if (pc.getAbility().getInt() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						if (pc.getAbility().getInt() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{
 							pc.getAbility().addInt((byte) 1);
 							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
@@ -137,7 +138,7 @@ public class Elixir extends L1ItemInstance {
 						}
 						break;
 					case 40037:
-						if (pc.getAbility().getWis() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						if (pc.getAbility().getWis() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{
 							pc.getAbility().addWis((byte) 1);
 							pc.resetBaseMr();
@@ -154,7 +155,7 @@ public class Elixir extends L1ItemInstance {
 						}
 						break;
 					case 40038:
-						if (pc.getAbility().getCha() < 45 && pc.getAbility().getElixirCount() < 10 && ElixirUseCount >= 1)
+						if (pc.getAbility().getCha() < 50 && pc.getAbility().getElixirCount() < ElixirMaxCount && ElixirUseCount >= 1)
 						{
 							pc.getAbility().addCha((byte) 1);
 							pc.getAbility().setElixirCount(pc.getAbility().getElixirCount() + 1);
