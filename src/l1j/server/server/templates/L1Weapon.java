@@ -141,7 +141,8 @@ public class L1Weapon extends L1Item {
 	public void set_canbedmg(int i) {
 		_canbedmg = i;
 	}
-
+	
+	
 	@Override
 	public boolean isTwohandedWeapon() {
 		int weapon_type = getType();
