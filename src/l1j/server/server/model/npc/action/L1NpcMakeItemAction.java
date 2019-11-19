@@ -28,6 +28,7 @@ import java.util.Random;
 
 import l1j.server.L1DatabaseFactory;
 import l1j.server.server.datatables.ItemTable;
+import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1ObjectAmount;
 import l1j.server.server.model.L1PcInventory;
@@ -149,7 +150,7 @@ public class L1NpcMakeItemAction extends L1NpcXmlAction {
 			if (_CountToCreate < 0 || _CountToCreate > 9999)
 				return false;
 		}
-		if (pc.getInventory().getSize() + countToCreate > 180) {
+		if (pc.getInventory().getSize() + countToCreate > L1Inventory.MAX_SLOT_SIZE) {
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
 		}

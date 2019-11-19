@@ -24,6 +24,7 @@ import l1j.server.Warehouse.PackageWarehouse;
 import l1j.server.Warehouse.SupplementaryService;
 import l1j.server.Warehouse.WarehouseManager;
 import l1j.server.server.Opcodes;
+import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.model.gametime.RealTime;
@@ -36,7 +37,7 @@ public class S_RetrievePackageList extends ServerBasePacket {
 	public boolean NonValue = false;
 
 	public S_RetrievePackageList(int objid, L1PcInstance pc) {
-		if (pc.getInventory().getSize() < 180) {
+		if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE) {
 			SupplementaryService w = WarehouseManager.getInstance().getSupplementaryService(pc.getAccountName());
 			if (w == null) return;
 			int size = w.getSize();

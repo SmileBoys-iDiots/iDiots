@@ -37,6 +37,7 @@ import l1j.server.server.datatables.NpcShopTable;
 import l1j.server.server.model.Broadcaster;
 import l1j.server.server.model.L1BugBearRace;
 import l1j.server.server.model.L1CastleLocation;
+import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1PcInventory;
 import l1j.server.server.model.L1TaxCalculator;
@@ -271,7 +272,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
 		}
@@ -677,7 +678,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			pc.sendPackets(new S_ServerMessage(263));
 			return false;
 		}
@@ -794,7 +795,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 
 			pc.sendPackets(new S_SystemMessage(
 					"한 캐릭터가 들고 다닐 수 있는 아이템의 최대 가짓수는 180개입니다."), true);
@@ -849,7 +850,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
 		}
@@ -885,7 +886,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263));
 			return false;
@@ -963,7 +964,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
@@ -1021,7 +1022,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
@@ -1079,7 +1080,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
@@ -1137,7 +1138,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
@@ -1358,7 +1359,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
@@ -1400,7 +1401,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
@@ -1441,7 +1442,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
@@ -1483,7 +1484,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
@@ -1525,7 +1526,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
@@ -1565,7 +1566,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;
@@ -1636,7 +1637,7 @@ public class L1Shop {
 				totalCount += 1;
 			}
 		}
-		if (totalCount > 180) {
+		if (totalCount >= L1Inventory.MAX_SLOT_SIZE) {
 			// \f1한사람의 캐릭터가 가지고 걸을 수 있는 아이템은 최대 180개까지입니다.
 			pc.sendPackets(new S_ServerMessage(263), true);
 			return false;

@@ -6701,7 +6701,7 @@ public class C_NPCAction extends ClientBasePacket {
 						}
 						create_weight += temp.getWeight() * createcount[k];
 					}
-					if (pc.getInventory().getSize() + create_count > 180) {
+					if (pc.getInventory().getSize() + create_count > L1Inventory.MAX_SLOT_SIZE) {
 						pc.sendPackets(new S_ServerMessage(263));
 						return;
 					}

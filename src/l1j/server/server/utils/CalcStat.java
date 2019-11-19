@@ -78,7 +78,7 @@ public class CalcStat {
 		int dmg = 1; 
 		for (int i = 8; i < 128; i++) // 8부터 2레벨 마다 1씩 증가
 		{ 
-			if (i % 2 == 0)
+			if ((i - 8) % 2 == 0)
 			{
 				dmg++;
 			}
@@ -104,7 +104,7 @@ public class CalcStat {
 		int cri = 0; 
 		for (int i = 40; i < 128; i++) // 40부터 10레벨마다 1씩 증가
 		{
-			if (i % 10 == 0)
+			if ((i - 40) % 10 == 0)
 			{
 				cri++;
 			}
@@ -126,7 +126,7 @@ public class CalcStat {
 		int dmg = 1; 
 		for (int i = 6; i < 128; i++) // 6부터 3레벨 마다 1씩 증가
 		{ 
-			if (i % 3 == 0)
+			if ((i - 6) % 3 == 0)
 			{
 				dmg++;
 			}
@@ -143,7 +143,7 @@ public class CalcStat {
 		int cri = 0; 
 		for (int i = 40; i < 128; i++) // 40부터 10레벨마다 1씩 증가
 		{
-			if (i % 10 == 0)
+			if ((i - 40) % 10 == 0)
 			{
 				cri++;
 			}
@@ -153,7 +153,7 @@ public class CalcStat {
 		int ac = -1; 
 		for (int i = 6; i < 128; i++) // 6부터 3레벨 마다 1씩 증가
 		{
-			if (i % 3 == 0)
+			if ((i - 6) % 3 == 0)
 			{
 				ac--;
 			}
@@ -163,7 +163,7 @@ public class CalcStat {
 		int er = 2; 
 		for (int i = 6; i < 44; i++) // 6부터 2레벨 마다 1씩 증가
 		{
-			if (i % 2 == 0)
+			if ((i - 6) % 2 == 0)
 			{
 				er++;
 			}
@@ -183,66 +183,50 @@ public class CalcStat {
 		// 초기화
 		for (int i = 0; i < 128; i++)
 		{
-			dexDamage[i] = 0;
-			dexHit[i] = -3;
-			dexCritical[i] = 0;
-			dexAC[i] = -1;
-			dexER[i] = 0;
+			intDamage[i] = 0;
+			intHit[i] = -4;
+			intCritical[i] = 0;
+			intBonus[i] = 0;
 		}
 
-		int dmg = 1; 
-		for (int i = 6; i < 128; i++) // 6부터 3레벨 마다 1씩 증가
+		int dmg = 0; 
+		for (int i = 15; i < 128; i++) // 15부터 5레벨 마다 1씩 증가
 		{ 
-			if (i % 3 == 0)
+			if ((i - 15) % 5 == 0)
 			{
 				dmg++;
 			}
-			dexDamage[i] = dmg;
+			intDamage[i] = dmg;
 		}
 
-		int hit = -3; 
-		for (int i = 7; i < 128; i++) // 7부터 1레벨 마다 1씩 증가
+		int hit = -5; 
+		for (int i = 8; i < 128; i++) // 8부터 3레벨 마다 1씩 증가
 		{ 
-			dexHit[i] = hit;
-			hit++;
+			if ((i - 8) % 3 == 0)
+			{
+				hit++;
+			}
+			intHit[i] = hit;
 		}
 
 		int cri = 0; 
 		for (int i = 40; i < 128; i++) // 40부터 10레벨마다 1씩 증가
 		{
-			if (i % 10 == 0)
+			if ((i - 40) % 10 == 0)
 			{
 				cri++;
 			}
-			dexCritical[i] = cri;
+			intCritical[i] = cri;
 		}
 
-		int ac = -1; 
-		for (int i = 6; i < 128; i++) // 6부터 3레벨 마다 1씩 증가
+		int bonus = 1; 
+		for (int i = 8; i < 128; i++) // 8부터 4레벨 마다 1씩 증가
 		{
-			if (i % 3 == 0)
+			if ((i - 8) % 4 == 0)
 			{
-				ac--;
+				bonus++;
 			}
-			dexAC[i] = ac;
-		}
-
-		int er = 2; 
-		for (int i = 6; i < 44; i++) // 6부터 2레벨 마다 1씩 증가
-		{
-			if (i % 2 == 0)
-			{
-				er++;
-			}
-			dexER[i] = er;
-		}
-		for (int i = 44; i < 128; i++) // 44부터 3레벨 마다 1씩 증가
-		{
-			if ((i - 44) % 3 == 0)
-			{
-				er++;
-			}
-			dexER[i] = er;
+			intBonus[i] = bonus;
 		}
 	}
 	private static void ResetAbilityBonus_CON()
@@ -274,7 +258,7 @@ public class CalcStat {
 		int 물약회복 = 0; 
 		for (int i = 20; i < 128; i++) // 20부터 5레벨마다 1씩 증가
 		{
-			if (i % 5 == 0)
+			if ((i - 20) % 5 == 0)
 			{
 				물약회복++;
 			}
@@ -295,7 +279,7 @@ public class CalcStat {
 		int MP증가 = 0; 
 		for (int i = 15; i < 128; i++) // 15부터 5레벨 마다 1씩 증가
 		{ 
-			if (i % 5 == 0)
+			if ((i - 15) % 5 == 0)
 			{
 				MP증가++;
 			}
@@ -305,7 +289,7 @@ public class CalcStat {
 		int MP회복 = 1; 
 		for (int i = 10; i < 128; i++) // 10부터 5레벨 마다 1씩 증가
 		{ 
-			if (i % 5 == 0)
+			if ((i - 10) % 5 == 0)
 			{
 				MP회복++;
 			}
@@ -315,7 +299,7 @@ public class CalcStat {
 		int 물약회복 = 1; 
 		for (int i = 11; i < 128; i++) // 11부터 2레벨마다 1씩 증가
 		{
-			if (i % 2 == 0)
+			if ((i - 11) % 2 == 0)
 			{
 				물약회복++;
 			}
@@ -2285,6 +2269,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_STR();
 			return strDamage[str];
 		}
 		catch (Exception e)
@@ -2297,6 +2282,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_STR();
 			return strHit[str];
 		}
 		catch (Exception e)
@@ -2309,6 +2295,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_STR();
 			return strCritical[str];
 		}
 		catch (Exception e)
@@ -2323,6 +2310,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_INT();
 			return intDamage[inte];
 		}
 		catch (Exception e)
@@ -2335,6 +2323,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_INT();
 			return intHit[inte];
 		}
 		catch (Exception e)
@@ -2347,6 +2336,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_INT();
 			return intCritical[inte];
 		}
 		catch (Exception e)
@@ -2359,6 +2349,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_INT();
 			return intBonus[inte];
 		}
 		catch (Exception e)
@@ -2387,6 +2378,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_DEX();
 			return dexDamage[dex];
 		}
 		catch (Exception e)
@@ -2399,6 +2391,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_DEX();
 			return dexHit[dex];
 		}
 		catch (Exception e)
@@ -2411,6 +2404,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_DEX();
 			return dexCritical[dex];
 		}
 		catch (Exception e)
@@ -2424,6 +2418,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_DEX();
 			return dexAC[dex];
 		}
 		catch (Exception e)
@@ -2436,6 +2431,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_DEX();
 			return dexER[dex];
 		}
 		catch (Exception e)
@@ -2450,6 +2446,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_WIS();
 			return wisMP회복[wis];
 		}
 		catch (Exception e)
@@ -2462,6 +2459,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_WIS();
 			return wis물약회복[wis];
 		}
 		catch (Exception e)
@@ -2474,6 +2472,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_WIS();
 			int base = 0;
 			switch (type)
 			{
@@ -2520,6 +2519,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_CON();
 			return conHP회복[con];
 		}
 		catch (Exception e)
@@ -2532,6 +2532,7 @@ public class CalcStat {
 	{
 		try
 		{
+			ResetAbilityBonus_CON();
 			return con물약회복[con];
 		}
 		catch (Exception e)

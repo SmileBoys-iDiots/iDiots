@@ -52,6 +52,7 @@ public class L1Inventory extends L1Object {
 
 	private static Logger _log = Logger.getLogger(L1Inventory.class.getName());
 	protected List<L1ItemInstance> _items = new CopyOnWriteArrayList<L1ItemInstance>();
+	public static final int MAX_SLOT_SIZE = 180; 
 	public static final int MAX_AMOUNT = 2000000000; // 2G
 	public static final int MAX_WEIGHT = 1500;
 	public static final int OK = 0;

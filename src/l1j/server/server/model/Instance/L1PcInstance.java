@@ -5251,6 +5251,16 @@ public class L1PcInstance extends L1Character {
 
 		return er;
 	}
+	public int get_PlusDg()
+	{
+		int dg = 0;
+		return dg;
+	}
+	public int getPlusMe()
+	{
+		int me = 0;
+		return me;
+	}
 	
 
 	public L1BookMark getBookMark(String name) {

@@ -24,6 +24,7 @@ import l1j.server.Warehouse.ElfWarehouse;
 import l1j.server.Warehouse.WarehouseManager;
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.ItemClientCode;
+import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.utils.BinaryOutputStream;
@@ -34,7 +35,7 @@ public class S_RetrieveElfList extends ServerBasePacket {
 	private BinaryOutputStream os;
 	
 	public S_RetrieveElfList(int objid, L1PcInstance pc) {
-		if (pc.getInventory().getSize() < 180) {
+		if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE) {
 			ElfWarehouse elfwarehouse = WarehouseManager.getInstance().getElfWarehouse(pc.getAccountName());
 			int size = elfwarehouse.getSize();
 			if (size > 0) {

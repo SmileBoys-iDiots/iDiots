@@ -27,6 +27,7 @@ import l1j.server.Config;
 import l1j.server.IND;
 import l1j.server.server.datatables.NPCTalkDataTable;
 import l1j.server.server.model.L1Attack;
+import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1NpcTalkData;
 import l1j.server.server.model.L1Quest;
 import l1j.server.server.model.L1Teleport;
@@ -211,7 +212,7 @@ public class L1TeleporterInstance extends L1NpcInstance {
 		L1NpcTalkData talking = NPCTalkDataTable.getInstance().getTemplate(
 				getNpcTemplate().get_npcId());
 		if (getNpcId() == 100746) {
-			if (player.getInventory().getSize() >= 180)
+			if (player.getInventory().getSize() >= L1Inventory.MAX_SLOT_SIZE)
 				return;
 			if (action.equalsIgnoreCase("enter")) {
 			//	if (player.getInventory().checkItem(60511)) {

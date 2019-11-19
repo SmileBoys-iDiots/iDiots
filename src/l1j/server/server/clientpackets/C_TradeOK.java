@@ -23,6 +23,7 @@ import l1j.server.GameSystem.Gamble.GambleInstance;
 import l1j.server.GameSystem.NpcTradeShop.NpcTradeShop;
 import l1j.server.GameSystem.NpcTradeShop.ShopItem;
 import l1j.server.server.model.Broadcaster;
+import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1Trade;
 import l1j.server.server.model.L1World;
@@ -108,8 +109,8 @@ public class C_TradeOK extends ClientBasePacket {
 							// (180 - 16) 개미만이라면 트레이드 성립.
 							// 본래는 겹치는 아이템(아데나등 )을 이미 가지고 있는 경우를 고려하지 않는 차면 안
 							// 된다.
-							if (player.getInventory().getSize() < (180 - 16)
-									&& target.getInventory().getSize() < (180 - 16)) {// 서로의
+							if (player.getInventory().getSize() < (L1Inventory.MAX_SLOT_SIZE - 16)
+									&& target.getInventory().getSize() < (L1Inventory.MAX_SLOT_SIZE - 16)) {// 서로의
 																						// 아이템을
 																						// 상대에게
 																						// 건네준다

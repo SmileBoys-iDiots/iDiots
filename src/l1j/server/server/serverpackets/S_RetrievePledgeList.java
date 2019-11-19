@@ -25,6 +25,7 @@ import l1j.server.Warehouse.WarehouseManager;
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.ItemClientCode;
 import l1j.server.server.model.L1Clan;
+import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1World;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
@@ -50,7 +51,7 @@ public class S_RetrievePledgeList extends ServerBasePacket {
 			return;
 		}
 
-		if (pc.getInventory().getSize() < 180) {
+		if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE) {
 			int size = clanWarehouse.getSize();
 			if (size > 0) {
 				writeC(Opcodes.S_EXTENDED_PROTOBUF);

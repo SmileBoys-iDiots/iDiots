@@ -169,11 +169,11 @@ public class L1TreasureBox {
 		Random random = null;
 
 		if (getType().equals(TYPE.SPECIFIC)) {
-			if (pc.getInventory().getSize() + getItems().size() > 180) {
+			if (pc.getInventory().getSize() + getItems().size() > L1Inventory.MAX_SLOT_SIZE) {
 				return false;
 			}
 		} else if (getType().equals(TYPE.RANDOM)) {
-			if (pc.getInventory().getSize() + 1 > 180) {
+			if (pc.getInventory().getSize() + 1 > L1Inventory.MAX_SLOT_SIZE) {
 				return false;
 			}
 		}

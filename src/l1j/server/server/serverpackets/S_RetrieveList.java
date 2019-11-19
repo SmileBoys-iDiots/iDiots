@@ -6,6 +6,7 @@ import l1j.server.Warehouse.PrivateWarehouse;
 import l1j.server.Warehouse.WarehouseManager;
 import l1j.server.server.Opcodes;
 import l1j.server.server.model.ItemClientCode;
+import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.Instance.L1ItemInstance;
 import l1j.server.server.model.Instance.L1PcInstance;
 import l1j.server.server.utils.BinaryOutputStream;
@@ -20,7 +21,7 @@ public class S_RetrieveList extends ServerBasePacket {
 
 	/** 개인 창고 부분 */
 	public S_RetrieveList(int objid, L1PcInstance pc) {
-		if (pc.getInventory().getSize() < 180) {
+		if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE) {
 			PrivateWarehouse warehouse = WarehouseManager.getInstance().getPrivateWarehouse(pc.getAccountName());
 			int size = warehouse.getSize();
 			if (size > 0) {

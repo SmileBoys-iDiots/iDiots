@@ -189,6 +189,7 @@ public class L1Attack {
 	private int _SweaponType1 = 0;
 	private int _SweaponAddHit = 0;
 	private int _SweaponAddDmg = 0;
+	private int _SweaponAddCri = 0;
 	private int _SweaponSmall = 0;
 	private int _SweaponLarge = 0;
 	private int _SweaponRange = 1;
@@ -208,6 +209,8 @@ public class L1Attack {
 	private int _weaponAddHit = 0;
 
 	private int _weaponAddDmg = 0;
+
+	private int _weaponAddCri = 0;
 
 	private int _weaponSmall = 0;
 
@@ -299,6 +302,7 @@ public class L1Attack {
 				_SweaponType = Sweapon.getItem().getType1();
 				_SweaponAddHit = Sweapon.getItem().getHitModifier()	+ Sweapon.getHitByMagic();
 				_SweaponAddDmg = Sweapon.getItem().getDmgModifier()	+ Sweapon.getDmgByMagic();
+				_SweaponAddCri = Sweapon.getItem().get_addcri();
 				_SweaponType1 = Sweapon.getItem().getType();
 				_SweaponSmall = Sweapon.getItem().getDmgSmall();
 				_SweaponLarge = Sweapon.getItem().getDmgLarge();
@@ -315,6 +319,7 @@ public class L1Attack {
 				_weaponType = weapon.getItem().getType1();
 				_weaponAddHit = weapon.getItem().getHitModifier() + weapon.getHitByMagic();
 				_weaponAddDmg = weapon.getItem().getDmgModifier() + weapon.getDmgByMagic()+ weapon.getItem().getaddDmg();
+				_weaponAddCri = weapon.getItem().get_addcri();
 				_weaponType1 = weapon.getItem().getType();
 				_weaponSmall = weapon.getItem().getDmgSmall();
 				_weaponLarge = weapon.getItem().getDmgLarge();
@@ -690,68 +695,76 @@ public class L1Attack {
 		return _isHit;
 	}
 
+	public int CalcHitRate_PC(int targetDG, int targetER)
+	{
+		int hitRate = (_pc.getLevel() / 3);
+		
+        if (_weaponId == 450044 || _weaponId == 450045 || _weaponId == 450046 || _weaponId == 450047 || _weaponId == 450048 || _weaponId == 450049 || _weaponId == 450050 || _weaponId == 450051)
+        { // 지배자 무기
+        	_hitRate -= 500;
+		}
+		if (_weaponType != 20 && _weaponType != 62)
+		{
+			_hitRate += CalcStat.근거리명중(_pc.getAbility().getTotalStr()) * 2;
+			_hitRate += (_weaponAddHit * 3) + _pc.getHitup() + (_pc.getHitupByArmor() * 2) + (_weaponEnchant / 2) - targetDG;
+
+		}
+		else
+		{
+			_hitRate += CalcStat.원거리명중(_pc.getAbility().getTotalDex()) * 2;
+			_hitRate += (_weaponAddHit * 3) + _pc.getBowHitup() + (_pc.getBowHitupByArmor() * 2) + _pc.getBowHitupByDoll() + (_weaponEnchant / 2) - targetER;
+		}
+		
+		if (_pc.isDragonknight())
+		{
+			_hitRate -= 20;			
+		}
+		
+		return hitRate;
+	}
+	public int CalcHitRate_NPC(int targetDG, int targetER)
+	{
+		int hitRate = (_npc.getLevel() / 3);
+		return hitRate;
+	}
+	
+	
 	// ●●●● 플레이어로부터 플레이어에의 명중 판정 ●●●●
 	/*
 	 * PC에의 명중율 =(PC의 Lv＋클래스 보정＋STR 보정＋DEX 보정＋무기 보정＋DAI의 매수/2＋마법 보정)×0.68－10
 	 * 이것으로 산출된 수치는 자신이 최대 명중(95%)을 주는 일을 할 수 있는 상대측 PC의 AC 거기로부터 상대측 PC의 AC가
 	 * 1좋아질 때마다 자명중율로부터 1당겨 간다 최소 명중율5% 최대 명중율95%
 	 */
-	private boolean calcPcPcHit() {
-
-		_hitRate = (_pc.getLevel() / 3);
+	private boolean calcPcPcHit()
+	{
 	     /** 배틀존 **/
-        if (_calcType == PC_PC) {
-            if (_pc.getMapId() == 5153) {
-                if (_pc.get_DuelLine() == _targetPc.get_DuelLine()) {
+        if (_calcType == PC_PC)
+        {
+            if (_pc.getMapId() == 5153) 
+            {
+                if (_pc.get_DuelLine() == _targetPc.get_DuelLine())
+                {
                     return false;
                 }
             }
         }
-        if (_weaponId == 450044 || _weaponId == 450045 || _weaponId == 450046 || _weaponId == 450047
-				|| _weaponId == 450048 || _weaponId == 450049 || _weaponId == 450050 || _weaponId == 450051) { // 포효의이도류
-        	_hitRate -= 500;
-		}
-		if (_weaponType != 20 && _weaponType != 62) {
-			/*
-			 * if (_pc.getAbility().getTotalStr() > 59) _hitRate +=
-			 * (strHit[58]); else _hitRate +=
-			 * (strHit[_pc.getAbility().getTotalStr()-1]);
-			 */
-			_hitRate += CalcStat.근거리명중(_pc.getAbility().getTotalStr()) * 2;
-			_hitRate += (_weaponAddHit * 3) + _pc.getHitup()
-					+ (_pc.getHitupByArmor() * 2) + (_weaponEnchant / 2);
-
-		} else {
-			/*
-			 * if (_pc.getAbility().getTotalDex() > 60) _hitRate +=
-			 * (dexHit[59]); else _hitRate +=
-			 * (dexHit[_pc.getAbility().getTotalDex()-1]);
-			 */
-			_hitRate += CalcStat.원거리명중(_pc.getAbility().getTotalDex()) * 2;
-			_hitRate += (_weaponAddHit * 3) + _pc.getBowHitup()
-					+ (_pc.getBowHitupByArmor() * 2) + _pc.getBowHitupByDoll()
-					+ (_weaponEnchant / 2) - (_targetPc.get_PlusEr());
-		}
-		
-		if (_pc.isDragonknight()) {
-			_hitRate -= 20;			
-		}
-
-
 
 		// if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(MIRROR_IMAGE))
 		// _hitRate -= 8;
 
-		int attackerDice = _random.nextInt(20) + 1 + _hitRate - 10;
+		int targetAC = _targetPc.getAC().getAc();
 
-		int defenderDice = 0;
+		_hitRate = CalcHitRate_PC(_targetPc.get_PlusDg(), _targetPc.get_PlusEr());
+		int attackerDice = _random.nextInt(_hitRate) / 100;
 
-		if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(FEAR)) {
-			attackerDice += 50;
-		}
 
-		int defenderValue = (int) ((_targetPc.getAC().getAc() * 3.2)+(_hitRate*1.8)) * -1;
-		int levelDmg = (int) ((_pc.getLevel()) / 12);
+		//if (_targetPc.getSkillEffectTimerSet().hasSkillEffect(FEAR))
+		//{
+		//	attackerDice += 50;
+		//}
+
+		int defenderValue = (int)((targetAC * 3.2) + (_hitRate * 1.8)) * -1;
+		int levelDmg = (int)((_pc.getLevel()) / 12);
 		if (levelDmg <= 0)
 			levelDmg = 0;
 
@@ -759,46 +772,48 @@ public class L1Attack {
 		
 
 		
-	
-		if (_targetPc.getAC().getAc() >= 0)
-			defenderDice = 10 - _targetPc.getAC().getAc();
-		else if (_targetPc.getAC().getAc() < 0) {
+
+		int defenderDice = 0;
+		if (targetAC >= 0)
+		{
+			defenderDice = 10 - targetAC;
+		}
+		else if (targetAC < 0) 
+		{
 			defenderDice = defenderValue;
-			// defenderDice = 10 + _random.nextInt(defenderValue) + 1;
-			int ac = _targetPc.getAC().getAc();
-			if (ac <= -170)
+			if (targetAC <= -170)
 				defenderDice += Config.AC_170;
-			else if (ac <= -160)
+			else if (targetAC <= -160)
 				defenderDice += Config.AC_160;
-			else if (ac <= -150)
+			else if (targetAC <= -150)
 				defenderDice += Config.AC_150;
-			else if (ac <= -140)
+			else if (targetAC <= -140)
 				defenderDice += Config.AC_140;
-			else if (ac <= -130)
+			else if (targetAC <= -130)
 				defenderDice += Config.AC_130;
-			else if (ac <= -120)
+			else if (targetAC <= -120)
 				defenderDice += Config.AC_120;
-			else if (ac <= -110)
+			else if (targetAC <= -110)
 				defenderDice += Config.AC_110;
-			else if (ac <= -100)
+			else if (targetAC <= -100)
 				defenderDice += Config.AC_100;
-			else if (ac <= -90)
+			else if (targetAC <= -90)
 				defenderDice += Config.AC_90;
-			else if (ac <= -80)
+			else if (targetAC <= -80)
 				defenderDice += Config.AC_80;
-			else if (ac <= -70)
+			else if (targetAC <= -70)
 				defenderDice += Config.AC_70;
-			else if (ac <= -60)
+			else if (targetAC <= -60)
 				defenderDice += Config.AC_60;
-			else if (ac <= -50)
+			else if (targetAC <= -50)
 				defenderDice += Config.AC_50;
-			else if (ac <= -40)
+			else if (targetAC <= -40)
 				defenderDice += Config.AC_40;
-			else if (ac <= -30)
+			else if (targetAC <= -30)
 				defenderDice += Config.AC_30;
-			else if (ac <= -20)
+			else if (targetAC <= -20)
 				defenderDice += Config.AC_20;
-			else if (ac <= -10)
+			else if (targetAC <= -10)
 				defenderDice += Config.AC_10;
 		}
 

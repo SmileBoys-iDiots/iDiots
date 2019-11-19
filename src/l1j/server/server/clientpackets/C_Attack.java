@@ -30,6 +30,7 @@ import l1j.server.server.model.AcceleratorChecker;
 import l1j.server.server.model.Broadcaster;
 import l1j.server.server.model.CharPosUtil;
 import l1j.server.server.model.L1Character;
+import l1j.server.server.model.L1Inventory;
 import l1j.server.server.model.L1Object;
 import l1j.server.server.model.L1Teleport;
 import l1j.server.server.model.L1World;
@@ -133,7 +134,7 @@ public class C_Attack extends ClientBasePacket {
 			}
 
 			if (pc.getMapId() == 1931) {
-				if (pc.getInventory().getSize() >= 180) {
+				if (pc.getInventory().getSize() >= L1Inventory.MAX_SLOT_SIZE) {
 					pc.sendPackets(
 							new S_SystemMessage("인벤토리를 갯수를 비운 후 입장해주세요."), true);
 					L1Teleport.teleport(pc, 33443, 32797, (short) 4, 5, true);

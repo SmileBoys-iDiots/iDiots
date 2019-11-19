@@ -296,7 +296,7 @@ public class C_ItemUSe extends ClientBasePacket {
 						// 가득찼습니다.
 						return;
 					}
-					if (pc.getInventory().getSize() >= 175) {
+					if (pc.getInventory().getSize() >= L1Inventory.MAX_SLOT_SIZE) {
 						pc.sendPackets(new S_SystemMessage(
 								"아이템 사용 실패 : 인벤토리의 갯수를 줄인후 사용해주세요."));
 						return;
@@ -8952,7 +8952,7 @@ public class C_ItemUSe extends ClientBasePacket {
 
 	private void 클래스스킬북(L1PcInstance pc) {
 		if (pc.isCrown()) {
-			if (pc.getInventory().getSize() < 173) {
+			if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE - 7 - 1) {
 				for (int i = 40226; i <= 40231; i++) {
 					createNewItem2(pc, i, 1, 0); // 군주 스킬
 				}
@@ -8963,7 +8963,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 
 		if (pc.isKnight()) {
-			if (pc.getInventory().getSize() < 175) {
+			if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE - 4 - 1) {
 				for (int i = 40164; i <= 40166; i++) {
 					createNewItem2(pc, i, 1, 0); // 기사 스킬
 				}
@@ -8976,7 +8976,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 
 		if (pc.isElf()) {
-			if (pc.getInventory().getSize() < 142) {
+			if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE - 38 - 1) {
 				for (int i = 40232; i <= 40264; i++) {// 38
 					createNewItem2(pc, i, 1, 0); // 요정스킬
 				}
@@ -8988,7 +8988,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			}
 		}
 		if (pc.isWizard()) {
-			if (pc.getInventory().getSize() < 124) {
+			if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE - 55 - 1) {
 				for (int i = 40170; i <= 40225; i++) {
 					if (i == 40222 || i == 40223 || i == 40212)
 						continue;// 디스
@@ -9000,7 +9000,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 
 		if (pc.isDarkelf()) {
-			if (pc.getInventory().getSize() < 164) {
+			if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE - 15 - 1) {
 				for (int i = 40265; i <= 40279; i++) {
 					createNewItem2(pc, i, 1, 0); // 다엘 스킬
 				}
@@ -9011,7 +9011,7 @@ public class C_ItemUSe extends ClientBasePacket {
 		}
 
 		if (pc.isDragonknight()) {
-			if (pc.getInventory().getSize() < 164) {
+			if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE - 15 - 1) {
 				for (int i = 439100; i <= 439114; i++) {
 					createNewItem2(pc, i, 1, 0); // 용기사 스킬
 				}
@@ -9020,7 +9020,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			}
 		}
 		if (pc.isIllusionist()) {
-			if (pc.getInventory().getSize() < 160) {
+			if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE - 20 - 1) {
 				for (int i = 439000; i <= 439019; i++) {
 					createNewItem2(pc, i, 1, 0); // 용기사 스킬
 				}
@@ -9029,7 +9029,7 @@ public class C_ItemUSe extends ClientBasePacket {
 			}
 		}
 		if (pc.isWarrior()) {
-			if (pc.getInventory().getSize() < 168) {
+			if (pc.getInventory().getSize() < L1Inventory.MAX_SLOT_SIZE - 11 - 1) {
 				for (int i = 7300; i <= 7311; i++) {
 					if (i == 7310 || i == 7304 || i == 7305 || i == 7306)
 						continue;// 데스페라도

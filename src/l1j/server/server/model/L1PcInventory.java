@@ -74,7 +74,7 @@ public class L1PcInventory extends L1Inventory {
 
 	private static Logger _log = Logger.getLogger(L1PcInventory.class.getName());
 
-	private static final int MAX_SIZE = 180;
+	private static final int MAX_SIZE = L1Inventory.MAX_SLOT_SIZE;
 
 	private final L1PcInstance _owner;
 
@@ -100,9 +100,9 @@ public class L1PcInventory extends L1Inventory {
 			int WeightRatio = 0;
 			int maxWeight = _owner.getMaxWeight();
 			WeightRatio = 100 * getWeight() / maxWeight;
-			if (getSize() > 175) {
-				return 100;
-			}
+			//if (getSize() >= L1Inventory.MAX_SLOT_SIZE) {
+			//	return 100;
+			//}
 			return WeightRatio;
 		} else { // 웨이트 레이트가 0이라면 중량 항상 0
 			return 0;
@@ -115,9 +115,9 @@ public class L1PcInventory extends L1Inventory {
 			int WeightRatio = 0;
 			int maxWeight = _owner.getMaxWeight();
 			WeightRatio = 100 * (getWeight() + 추가무게) / maxWeight;
-			if (getSize() > 175) {
-				return 100;
-			}
+			//if (getSize() >= L1Inventory.MAX_SLOT_SIZE) {
+			//	return 100;
+			//}
 			return WeightRatio;
 		} else { // 웨이트 레이트가 0이라면 중량 항상 0
 			return 0;
